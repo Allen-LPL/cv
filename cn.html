@@ -19,7 +19,20 @@
 
         <link rel="stylesheet" href="vendor/jquery.pagepiling.css" type="text/css" />
 
+        <script type="text/javascript" src="js/zoom.js?9"></script>
         <link rel="stylesheet" href="css/main.css?4" type="text/css" />
+        <style>
+            body{background: #f5f5f5}
+            .bigimg{width:600px;position: fixed;left: 0;top: 0; right: 0;bottom: 0;margin:auto;display: none;z-index:9999;border: 10px solid #fff;}
+            .mask{position: fixed;left: 0;top: 0; right: 0;bottom: 0;background-color: #000;opacity:0.5;filter: Alpha(opacity=50);z-index: 98;transition:all 1s;display: none}
+            .bigbox{width:840px;background: #fff;border:1px solid #ededed;margin:0 auto;border-radius: 10px;overflow: hidden;padding:10px;}
+            .bigbox>.imgbox{width:400px;height:250px;float:left;border-radius:5px;overflow: hidden;margin: 0 10px 10px 10px;}
+            .bigbox>.imgbox>img{width:100%;}
+            .imgbox:hover{cursor:zoom-in}
+            .mask:hover{cursor:zoom-out}
+            .mask>img{position: fixed;right:10px;top: 10px;width: 60px;}
+            .mask>img:hover{cursor:pointer}
+        </style>
     </head>
 
     <body >
@@ -126,7 +139,7 @@
 
             <div class="section center" style="vertical-align:auto;">
                 <h1>独立完成的架构部署</h1>
-                <img src="img/architecture1.png?4" height="73%" width="57%" />
+                <img src="img/architecture1.png?4" height="60%" width="45%"  class="smallimg" />
             </div>
 
             <div class="section center">
@@ -136,13 +149,31 @@
 
                 <h2><a href="Back-End Pengliang Liu.pdf" target="_blank" class="highlight">下载简历</a></h2>
             </div>
-        <link rel="stylesheet" href="../css/font.css" type="text/css" />
 
+
+            <img src="" alt="" class="bigimg">
+            <div class="mask">
+                <img src="img/close.png" alt="">
+            </div>
+        <link rel="stylesheet" href="../css/font.css" type="text/css" />
         <script src="js/jquery-1.11.0.min.js?1"></script>
         <script>window.jQuery || document.write('<script src="js/jquery-1.11.1.min.js?1"><\/script>');</script>
         <script type="text/javascript" src="vendor/jquery.pagepiling.min.js"></script>
-<!--        <script type="text/javascript" src="js/index.min.js?5"></script>-->
-            <script type="text/javascript" src="js/index.js?9"></script>
+        <script type="text/javascript" src="js/index.min.js?6"></script>
+<!--            <script type="text/javascript" src="js/index.js?9"></script>-->
+
+            <script>
+                $(function(){
+                    /*
+                     smallimg   // 小图
+                     bigimg  //点击放大的图片
+                     mask   //黑色遮罩
+                     */
+                    var obj = new zoom('mask', 'bigimg','smallimg');
+                    obj.init();
+                })
+            </script>
+<!--            <script type="text/javascript" src="js/jquery.js?9"></script>-->
         </div>
     </body>
 </html>
