@@ -8,9 +8,9 @@ $(document).ready(function() {
     if (mobilecheck()) {
         $('html').addClass('mobile');
     } else {
-        var en = ['Home', 'Projects', 'Professions', 'Education',
-                'Internship', 'Current Position', 'Contact Me'];
-        var cn = ['首页', '项目', '技能', '教育', '实习', '供职', '联系'];
+        var en = ['Home', 'Open source project', 'Solve difficult problems', 'Work Experience',
+                'Independently completed architecture deployment', 'Contact Me'];
+        var cn = ['首页', '开源项目', '解决的疑难问题', '工作经历', '独立完成的架构部署', '联系'];
         var isCn = window.location.href.indexOf('cn.html') >= 0;
         $('.section').addClass('initing');
         $('#pagepiling').pagepiling({
