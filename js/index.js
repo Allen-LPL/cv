@@ -8,6 +8,7 @@ $(document).ready(function() {
     if (mobilecheck()) {
     // if (false) {
         $('html').addClass('mobile');
+        $('.tag-panel').addClass('center');
     } else {
         var en = ['Home', 'Open source project', 'Solve difficult problems', 'Work Experience',
                 'Independently completed architecture deployment', 'Contact Me'];
