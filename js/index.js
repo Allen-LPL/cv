@@ -5,8 +5,8 @@ window.mobilecheck = function() {
 }
 
 $(document).ready(function() {
-    // if (mobilecheck()) {
-    if (false) {
+    if (mobilecheck()) {
+    // if (false) {
         $('html').addClass('mobile');
     } else {
         var en = ['Home', 'Open source project', 'Solve difficult problems', 'Work Experience',
