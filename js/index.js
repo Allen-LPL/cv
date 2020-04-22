@@ -10,9 +10,9 @@ $(document).ready(function() {
         $('html').addClass('mobile');
         $('.tag-panel').addClass('center');
     } else {
-        var en = ['Home', 'Open source project', 'Solve difficult problems', 'Work Experience',
+        var en = ['Home', 'Work Experience', 'Open source project', 'Solve difficult problems',
                 'Independently completed architecture deployment', 'Contact Me'];
-        var cn = ['首页', '开源项目', '解决的疑难问题', '工作经历', '独立完成的架构部署', '联系'];
+        var cn = ['首页', '工作经历', '开源项目', '解决的疑难问题', '独立完成的架构部署', '联系'];
         var isCn = window.location.href.indexOf('cn.html') >= 0;
         $('.section').addClass('initing');
         $('#pagepiling').pagepiling({
