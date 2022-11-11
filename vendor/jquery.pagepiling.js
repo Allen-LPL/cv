@@ -153,7 +153,7 @@
 
         $(container).css({
             'overflow' : 'hidden',
-            '-ms-touch-action': 'none',  /* Touch detection for Windows 8 */
+            '-ms-touch-action': 'none', /* Touch detection for Windows 8 */
             'touch-action': 'none'       /* IE 11 on Windows Phone 8.1*/
         });
 
