@@ -2,7 +2,7 @@
 
 #### Back-End Engineer
 
-![](https://i.loli.net/2020/04/19/ClnAFeQbiKsVZwW.png)
+![](https://pic1.imgdb.cn/item/691db30f3203f7be00181a20.png)
 
 Designed and Implemented by Pengliang Liu
 

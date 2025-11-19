@@ -10,11 +10,9 @@ $(document).ready(function() {
         $('html').addClass('mobile');
         $('.tag-panel').addClass('center');
     } else {
-        var en = ['Home', 'Work Experience', 'Open source project', 'Solve difficult problems',
-                'Distributed architecture completed independently in 2019',
-                'Physical topology of highly available distributed architecture in 2022',
-                'Logic topology of highly available distributed architecture in 2022', 'Contact Me'];
-        var cn = ['首页', '工作经历', '开源项目', '解决的疑难问题', '2019年独立完成的分布式架构', '2022年高可用分布式架构物理拓扑图', '2022年高可用分布式架构逻辑拓扑图', '联系'];
+        var en = ['Home', 'Advantages', 'Work Experience', 'Key Projects', 'Open source project',
+                'Architecture Evolution', 'Technical Stack & Adaptable Scenarios', 'Technical Articles', 'Contact Me'];
+        var cn = ['首页', '优势亮点', '工作经历', '重点项目', '开源项目', '架构演进', '技术栈 & 适配场景', '技术文章', '联系'];
         var isCn = window.location.href.indexOf('cn.html') >= 0;
         $('.section').addClass('initing');
         $('#pagepiling').pagepiling({
