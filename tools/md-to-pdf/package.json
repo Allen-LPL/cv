@@ -1,0 +1,16 @@
+{
+  "name": "md-to-pdf",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Render a resume Markdown file (raw HTML/SVG + CJK) to a clean A4 PDF via headless Chromium.",
+  "bin": {
+    "md2pdf": "md2pdf.js"
+  },
+  "scripts": {
+    "start": "node md2pdf.js"
+  },
+  "dependencies": {
+    "markdown-it": "^14.1.0",
+    "puppeteer": "^23.0.0"
+  }
+}
