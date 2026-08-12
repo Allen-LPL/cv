@@ -1,0 +1,35 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 300" role="img" aria-label="血站采供血预测 封面">
+  <defs>
+    <linearGradient id="b-bg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#141420"/><stop offset="1" stop-color="#0c0e18"/>
+    </linearGradient>
+    <radialGradient id="b-glow" cx="82%" cy="10%" r="70%">
+      <stop offset="0" stop-color="#fb7185" stop-opacity=".20"/><stop offset="1" stop-color="#fb7185" stop-opacity="0"/>
+    </radialGradient>
+    <pattern id="b-grid" width="34" height="34" patternUnits="userSpaceOnUse">
+      <path d="M34 0H0V34" fill="none" stroke="#ffffff" stroke-opacity=".045"/>
+    </pattern>
+    <linearGradient id="b-area" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#fb7185" stop-opacity=".28"/><stop offset="1" stop-color="#fb7185" stop-opacity="0"/>
+    </linearGradient>
+  </defs>
+  <rect width="640" height="300" fill="url(#b-bg)"/>
+  <rect width="640" height="300" fill="url(#b-grid)"/>
+  <rect width="640" height="300" fill="url(#b-glow)"/>
+  <!-- forecast chart -->
+  <g transform="translate(40 44)">
+    <line x1="0" y1="200" x2="560" y2="200" stroke="#ffffff" stroke-opacity=".12"/>
+    <line x1="0" y1="0" x2="0" y2="200" stroke="#ffffff" stroke-opacity=".12"/>
+    <path d="M0 150 L70 132 L140 156 L210 108 L280 128 L340 92 L340 200 L0 200 Z" fill="url(#b-area)"/>
+    <polyline points="0,150 70,132 140,156 210,108 280,128 340,92" fill="none" stroke="#fb7185" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+    <!-- predicted dashed segment -->
+    <polyline points="340,92 410,110 480,72 560,96" fill="none" stroke="#fca5b5" stroke-width="3" stroke-dasharray="6 6" stroke-linecap="round" stroke-linejoin="round"/>
+    <g fill="#fb7185">
+      <circle cx="210" cy="108" r="4"/><circle cx="340" cy="92" r="4.5"/>
+    </g>
+    <circle cx="480" cy="72" r="5" fill="#0c0e18" stroke="#fca5b5" stroke-width="2.5"/>
+    <line x1="340" y1="20" x2="340" y2="200" stroke="#f5b451" stroke-opacity=".55" stroke-width="1.4" stroke-dasharray="3 4"/>
+    <text x="348" y="34" fill="#f5b451" fill-opacity=".8" font-family="ui-monospace,Menlo,monospace" font-size="12">forecast →</text>
+  </g>
+  <text x="40" y="34" fill="#fca5b5" fill-opacity=".85" font-family="ui-monospace,Menlo,monospace" font-size="14" letter-spacing="3">TIME-SERIES · FORECAST</text>
+</svg>

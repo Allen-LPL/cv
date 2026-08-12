@@ -356,6 +356,110 @@ img{max-width:100%}
 @keyframes fadeRise{from{opacity:0;transform:translateY(12px)}to{opacity:1;transform:none}}
 
 /* ============================================================
+   2026 additions — related-company group · detail links ·
+   open-source cards + modal (motion-forward, theme-matched)
+   ============================================================ */
+
+/* -------- related companies group (experience timeline) -------- */
+.tl-group{
+  position:relative;margin:16px -10px 14px;padding:26px 10px 6px;
+  border:1px dashed rgba(245,180,81,.30);border-radius:16px;
+  background:rgba(245,180,81,.035);
+}
+.tl-group::before{
+  content:attr(data-label);position:absolute;top:-11px;left:18px;
+  padding:3px 11px;border-radius:999px;font-size:11px;font-weight:600;letter-spacing:.3px;
+  color:var(--amber);background:var(--bg-1);border:1px solid rgba(245,180,81,.30);
+}
+.tl-group .timeline-card:last-child{margin-bottom:2px}
+.detail-affil{
+  display:inline-block;margin:-8px 0 16px;padding:5px 12px;border-radius:8px;
+  font-size:12px;font-weight:500;color:var(--amber);
+  background:rgba(245,180,81,.10);border:1px solid rgba(245,180,81,.22);
+}
+
+/* -------- detail / project link buttons -------- */
+.detail-links{display:flex;flex-wrap:wrap;gap:10px;margin:0 0 18px}
+.btn-link{
+  display:inline-flex;align-items:center;gap:7px;padding:9px 15px;border-radius:10px;
+  font-size:12.5px;font-weight:600;letter-spacing:.2px;
+  color:var(--text);background:var(--surface-hi);border:1px solid var(--border-hi);
+  transition:transform .22s ease,border-color .22s ease,background .22s ease,color .22s ease;
+}
+.btn-link:hover{transform:translateY(-2px);color:#fff;border-color:var(--accent-line);background:var(--accent-soft)}
+.btn-link svg{width:14px;height:14px;flex:0 0 14px}
+.btn-link.primary{color:#06121f;background:linear-gradient(180deg,#7dd3fc,var(--accent));border-color:transparent}
+.btn-link.primary:hover{color:#06121f;box-shadow:0 10px 22px rgba(56,189,248,.32)}
+
+/* -------- open-source: redesigned clickable cards -------- */
+.oss-grid{grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:22px;perspective:1200px}
+.oss-card{
+  position:relative;gap:0;padding:0;overflow:hidden;cursor:pointer;
+  align-items:stretch;transform-style:preserve-3d;will-change:transform;
+  transition:transform .32s cubic-bezier(.22,1,.36,1),border-color .3s ease,box-shadow .3s ease;
+}
+.oss-card:hover{border-color:var(--border-hi);box-shadow:0 26px 54px rgba(2,6,16,.55),0 0 0 1px var(--accent-soft)}
+.oss-card:focus-visible{outline:2px solid var(--accent);outline-offset:3px}
+.oss-cover{position:relative;width:100%;aspect-ratio:16/7.4;overflow:hidden;border-bottom:1px solid var(--border);background:var(--bg-1)}
+.oss-cover img{width:100%;height:100%;object-fit:cover;display:block;border:0;border-radius:0;padding:0;background:none;
+  transition:transform .55s cubic-bezier(.22,1,.36,1)}
+.oss-card:hover .oss-cover img{transform:scale(1.06)}
+.oss-cover::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,transparent 52%,rgba(11,17,30,.55))}
+.oss-body{padding:17px 22px 20px;display:flex;flex-direction:column;gap:8px}
+.oss-body h2{margin:0;font-size:17px;font-weight:650}
+.oss-body h2 a{color:#eef4fb}
+.oss-body h2 a:hover{color:var(--accent)}
+.oss-tagline{margin:0;font-size:13px;color:var(--text-2);line-height:1.6}
+.oss-expand{margin-top:2px;font-size:12.5px;font-weight:600;color:var(--accent);display:inline-flex;align-items:center;gap:6px;transition:gap .25s ease}
+.oss-card:hover .oss-expand{gap:11px}
+
+/* -------- open-source modal -------- */
+.oss-modal{position:fixed;inset:0;z-index:140;display:none}
+.oss-modal.open{display:block}
+.oss-modal__scrim{position:absolute;inset:0;background:rgba(5,9,17,.72);
+  backdrop-filter:blur(7px);-webkit-backdrop-filter:blur(7px);opacity:0;transition:opacity .28s ease}
+.oss-modal.show .oss-modal__scrim{opacity:1}
+.oss-modal__dialog{
+  position:absolute;left:50%;top:50%;width:min(760px,92vw);max-height:88vh;
+  border-radius:20px;overflow:hidden;border:1px solid var(--border-hi);
+  background:linear-gradient(180deg,#111a2b,#0c1320);box-shadow:0 40px 100px rgba(2,6,16,.7);
+  transform:translate(-50%,-50%);opacity:0;will-change:transform,opacity;
+}
+.oss-modal__wrap{max-height:88vh;overflow-y:auto;overflow-x:hidden}
+.oss-modal__close{
+  position:absolute;right:14px;top:14px;z-index:4;width:38px;height:38px;border-radius:50%;
+  display:flex;align-items:center;justify-content:center;cursor:pointer;font-size:22px;line-height:1;
+  color:var(--text);background:rgba(12,18,30,.6);border:1px solid var(--border-hi);
+  backdrop-filter:blur(6px);transition:all .22s ease;
+}
+.oss-modal__close:hover{color:#fff;border-color:var(--accent-line);transform:rotate(90deg)}
+.oss-hero{position:relative;height:172px;overflow:hidden;border-bottom:1px solid var(--border)}
+.oss-hero img{width:100%;height:100%;object-fit:cover;display:block}
+.oss-hero::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,rgba(12,19,32,.1),rgba(12,19,32,.94))}
+.oss-hero__title{position:absolute;left:26px;right:70px;bottom:16px;z-index:2}
+.oss-hero__title h2{margin:0;font-size:24px;font-weight:750;color:#f4f8fd;letter-spacing:-.4px}
+.oss-hero__title p{margin:5px 0 0;font-size:13.5px;color:var(--text-2)}
+.oss-content{padding:22px 26px 28px;display:flex;flex-direction:column;gap:20px}
+.oss-stats{display:flex;flex-wrap:wrap;gap:12px}
+.oss-stat{flex:1 1 130px;min-width:120px;padding:14px 16px;border-radius:12px;background:var(--surface);border:1px solid var(--border)}
+.oss-stat b{display:block;font-size:21px;font-weight:750;color:var(--accent);letter-spacing:-.5px;line-height:1.1}
+.oss-stat span{font-size:11.5px;color:var(--text-3);display:block;margin-top:3px}
+.oss-sec-label{font-size:11px;font-weight:600;text-transform:uppercase;letter-spacing:.7px;color:var(--text-3);margin:0 0 -8px}
+.oss-sec-desc{margin:0;font-size:14px;color:var(--text);line-height:1.85}
+.oss-chips{display:flex;flex-wrap:wrap;gap:8px}
+.oss-hl{margin:0;padding:0;list-style:none;display:flex;flex-direction:column;gap:9px}
+.oss-hl li{position:relative;padding-left:20px;font-size:13.5px;color:var(--text-2);line-height:1.7}
+.oss-hl li::before{content:"";position:absolute;left:2px;top:9px;width:6px;height:6px;border-radius:50%;background:var(--accent)}
+
+/* modal motion: staggered reveal of blocks */
+.oss-modal.show .oss-reveal{animation:ossReveal .5s cubic-bezier(.22,1,.36,1) both}
+@keyframes ossReveal{from{opacity:0;transform:translateY(16px)}to{opacity:1;transform:none}}
+
+@media (prefers-reduced-motion:reduce){
+  .oss-card,.oss-card .oss-cover img,.oss-modal__dialog,.oss-modal.show .oss-reveal{transition:none!important;animation:none!important}
+}
+
+/* ============================================================
    Responsive
    ============================================================ */
 @media (max-width:1240px){
@@ -383,9 +487,14 @@ img{max-width:100%}
   body{font-size:15px}
   #avatar{height:clamp(200px,42vh,280px);width:auto}
   #title{letter-spacing:-1px}
-  .tech-card,.case-card,.oss-card{padding:20px}
+  .tech-card,.case-card{padding:20px}
+  .oss-body{padding:16px 18px 18px}
   .article-item{flex-direction:column;align-items:flex-start;gap:8px}
   .article-arrow{display:none}
+  .oss-hero{height:140px}
+  .oss-content{padding:18px 18px 24px}
+  .oss-hero__title h2{font-size:20px}
+  .detail-links{gap:8px}
 }
 
     </style>
@@ -504,6 +613,11 @@ img{max-width:100%}
             <div class="bigbox">
                 <div class="timeline-layout">
                     <div class="timeline-list" id="experience-timeline">
+                        <div class="timeline-card" data-detail="exp-0">
+                            <span class="timeline-time">2025.12 - 至今</span>
+                            <h3>浙江易数时代科技</h3>
+                            <p class="timeline-role">技术总监 · 医疗急救 AI + 软硬件一体化</p>
+                        </div>
                         <div class="timeline-card" data-detail="exp-1">
                             <span class="timeline-time">2023.11 - 2025.09</span>
                             <h3>杭州葳兰体育科技</h3>
@@ -514,23 +628,42 @@ img{max-width:100%}
                             <h3>上海涟隐网络科技集团</h3>
                             <p class="timeline-role">全栈架构师 · 统筹研发/运维/大数据</p>
                         </div>
-                        <div class="timeline-card" data-detail="exp-3">
-                            <span class="timeline-time">2020.06 - 2022.06</span>
-                            <h3>杭州淘游科技</h3>
-                            <p class="timeline-role">技术总监 · Golang/Java 多栈交付</p>
-                        </div>
-                        <div class="timeline-card" data-detail="exp-4">
-                            <span class="timeline-time">2018.11 - 2020.06</span>
-                            <h3>杭州天钻网络技术</h3>
-                            <p class="timeline-role">技术主管 · 跳跳猪系列</p>
-                        </div>
-                        <div class="timeline-card" data-detail="exp-5">
-                            <span class="timeline-time">2015.08 - 2018.11</span>
-                            <h3>霍尔果斯拓美互娱</h3>
-                            <p class="timeline-role">PHP 研发工程师 · 网赚/棋牌/宝石星球</p>
+                        <div class="tl-group" data-label="关联公司 · 同一实际控制人">
+                            <div class="timeline-card" data-detail="exp-3">
+                                <span class="timeline-time">2020.06 - 2022.06</span>
+                                <h3>杭州淘游科技</h3>
+                                <p class="timeline-role">技术总监 · Golang/Java 多栈交付</p>
+                            </div>
+                            <div class="timeline-card" data-detail="exp-4">
+                                <span class="timeline-time">2018.11 - 2020.06</span>
+                                <h3>杭州天钻网络技术</h3>
+                                <p class="timeline-role">技术主管 · 跳跳猪系列</p>
+                            </div>
+                            <div class="timeline-card" data-detail="exp-5">
+                                <span class="timeline-time">2015.08 - 2018.11</span>
+                                <h3>霍尔果斯拓美互娱</h3>
+                                <p class="timeline-role">PHP 研发工程师 · 网赚/棋牌/宝石星球</p>
+                            </div>
                         </div>
                     </div>
                     <div class="timeline-detail" id="experience-detail">
+                        <div class="detail-panel" id="exp-0">
+                            <h2>浙江易数时代科技有限公司 · 技术总监</h2>
+                            <p class="detail-meta">2025.12 - 至今 · 下属 11 人(硬件/Android/后端/产品/视频) · 医疗急救 AI 实训</p>
+                            <p class="detail-summary">统筹医疗急救 AI 实训产品体系,打通 Android 平板与 CPR 模拟人 / AED 的多协议通信,推动产品从基础训练版迭代至多模态 AI 版,并落地视频评分与时序预测两条 AI 算法线。</p>
+                            <ul>
+                                <li>软硬件一体化架构:Android 平板经蓝牙 / UART(RS485/RS232/TTL)/ Socket 多协议对接多品牌 CPR 模拟人与 AED 模拟器,实时采集按压深度/频率/回弹与吹气量并可视化。</li>
+                                <li>CPR 训练考核系统迭代至 AI 版:新增语音识别、动作识别与 AI 数字人实时对话,覆盖急救 9 步全流程,构建训练/考核/闯关(14 关)/竞赛四大模式。</li>
+                                <li>AI 急救侠:大模型 SSE 流式对话 + OpenGL 数字人渲染 + 讯飞/腾讯云语音唤醒与识别,构建多模态 AI 急救问答;海姆立克系统蓝牙对接模拟人采集叩击/冲击数据。</li>
+                                <li>120 院前急救多模态评分:YOLOv8 + ByteTrack 多人跟踪与姿态/动作识别、FunASR 语音识别 + VAD + 说话人分离,视频/音频/传感器统一时间轴 + 规则引擎百分制评分。</li>
+                                <li>北京血站采供血预测:LSTM+XGBoost 集成 / Conv1D-LSTM / 独立 XGBoost 三套建模,日历 + 气象特征工程与多窗口滚动回测,已形成专利草案,支撑采血计划与库存调度。</li>
+                            </ul>
+                            <div class="detail-highlight">
+                                <strong>亮点</strong>
+                                <p>统筹 11 人跨职能团队,把 Android 软硬件一体化与多模态 AI(对话/视觉/语音/时序)落到医疗急救实训一线,实现旧业务维护与新产品 0→1 并行。</p>
+                                <span>关键词:多模态 AI · 软硬件一体化 · 医疗急救</span>
+                            </div>
+                        </div>
                         <div class="detail-panel" id="exp-1">
                             <h2>杭州葳兰体育科技有限公司 · 技术总监</h2>
                             <p class="detail-meta">2023.11 - 2025.09 · 团队 10-20 人 · 体育/科研查重/跨境多产品线</p>
@@ -569,6 +702,7 @@ img{max-width:100%}
                         <div class="detail-panel" id="exp-3">
                             <h2>杭州淘游科技 · 技术总监</h2>
                             <p class="detail-meta">2020.06 - 2022.06 · 团队 30-48 人 · Golang/Java 多栈并行</p>
+                            <p class="detail-affil">关联公司 · 与 天钻网络、拓美互娱 同属同一实际控制人旗下不同主体</p>
                             <p class="detail-summary">负责 50W DAU toC 平台与多个电商项目的架构与交付，推进 PHP→Java/Golang 的系统性迁移与自动化运维体系。
                             </p>
                             <ul>
@@ -588,6 +722,7 @@ img{max-width:100%}
                         <div class="detail-panel" id="exp-4">
                             <h2>杭州天钻网络技术 · 技术主管</h2>
                             <p class="detail-meta">2018.11 - 2020.06 · 团队 5-8 人 · 跳跳猪系列</p>
+                            <p class="detail-affil">关联公司 · 与 淘游科技、拓美互娱 同属同一实际控制人旗下不同主体</p>
                             <p class="detail-summary">带领小型团队完成跳跳猪 PC/H5 0-1 与后续迭代，聚焦混合架构、低成本扩容与高频活动交付。</p>
                             <ul>
                                 <li>自研跳跳猪 PC/H5 混合架构：ThinkPHP + OpenResty + Golang + Redis，兼顾快速迭代与高性能。</li>
@@ -605,6 +740,7 @@ img{max-width:100%}
                         <div class="detail-panel" id="exp-5">
                             <h2>霍尔果斯拓美互娱 · PHP 研发工程师</h2>
                             <p class="detail-meta">2015.08 - 2018.11 · 网赚/宝石星球/棋牌业务</p>
+                            <p class="detail-affil">关联公司 · 与 淘游科技、天钻网络 同属同一实际控制人旗下不同主体</p>
                             <p class="detail-summary">负责棋牌、挖矿、页游等多条业务线的后端开发与维护，从活动玩法到高并发收益计算均独立完成。</p>
                             <ul>
                                 <li>负责网赚/宝石星球/棋牌等 PHP 后端，独立完成棋牌模块 0-1 设计与多轮活动运营。</li>
@@ -629,6 +765,16 @@ img{max-width:100%}
             <div class="bigbox">
                 <div class="timeline-layout">
                     <div class="timeline-list" id="project-timeline">
+                        <div class="timeline-card" data-detail="proj-120">
+                            <span class="timeline-time">2025 - 至今</span>
+                            <h3>120 院前急救多模态评分</h3>
+                            <p class="timeline-role">技术总监 · 多模态 AI 视频评分</p>
+                        </div>
+                        <div class="timeline-card" data-detail="proj-blood">
+                            <span class="timeline-time">2025 - 至今</span>
+                            <h3>血站采供血预测</h3>
+                            <p class="timeline-role">技术总监 · 时序预测(算法+全栈)</p>
+                        </div>
                         <div class="timeline-card" data-detail="proj-1">
                             <span class="timeline-time">2024 - 2025</span>
                             <h3>时刻体育 · 小程序/H5/APP</h3>
@@ -651,6 +797,47 @@ img{max-width:100%}
                         </div>
                     </div>
                     <div class="timeline-detail" id="project-detail">
+                        <div class="detail-panel" id="proj-120">
+                            <h2>120 专业级院前急救 · 多模态 AI 评分</h2>
+                            <p class="detail-meta">技术总监 · Python · FastAPI · YOLOv8 · ByteTrack · FunASR · React · Docker(GPU)</p>
+                            <div class="detail-links">
+                                <a class="btn-link" href="https://github.com/Allen-LPL/Emergency-AI-Examiner" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2A10 10 0 0 0 2 12c0 4.42 2.87 8.17 6.84 9.5.5.09.66-.22.66-.48 0-.24-.01-.87-.01-1.7-2.78.6-3.37-1.34-3.37-1.34-.45-1.16-1.11-1.47-1.11-1.47-.91-.62.07-.6.07-.6 1 .07 1.53 1.03 1.53 1.03.9 1.53 2.34 1.09 2.91.83.09-.65.35-1.09.63-1.34-2.22-.25-4.55-1.11-4.55-4.94 0-1.09.39-1.98 1.03-2.68-.1-.25-.45-1.27.1-2.65 0 0 .84-.27 2.75 1.02a9.6 9.6 0 0 1 5 0c1.91-1.29 2.75-1.02 2.75-1.02.55 1.38.2 2.4.1 2.65.64.7 1.03 1.59 1.03 2.68 0 3.84-2.34 4.68-4.57 4.93.36.31.68.92.68 1.85 0 1.34-.01 2.42-.01 2.74 0 .27.16.58.67.48A10 10 0 0 0 12 2Z"/></svg> Emergency-AI-Examiner</a>
+                            </div>
+                            <p class="detail-summary">上传三人一组的院前急救考核视频(含音频),自动解析动作与口令并给出百分制评分与改进建议,支持 CPU / GPU 容器化部署。</p>
+                            <ul>
+                                <li>视频分析:YOLOv8 人体检测 + ByteTrack 多人跟踪 + 姿态/动作识别,判定三人协同急救动作是否标准。</li>
+                                <li>音频分析:FunASR 中文语音识别 + 语音活动检测(VAD)+ 说话人分离,口令/呼救关键词匹配。</li>
+                                <li>多模态融合:视频 + 音频 + 传感器事件统一到同一时间轴,规则引擎 6 阶段百分制评分。</li>
+                                <li>评分报告:HTML/PDF 输出分项得分、雷达图、扣分原因、时间轴回放与改进建议。</li>
+                            </ul>
+                            <div class="detail-highlight">
+                                <strong>亮点</strong>
+                                <p>把 CV(检测/跟踪/姿态)与语音(ASR/VAD/说话人分离)融合到统一时间轴,用规则引擎产出可解释的急救评分报告。</p>
+                                <span>Pitch:多模态融合 · 可解释评分 · GPU 部署</span>
+                            </div>
+                        </div>
+                        <div class="detail-panel" id="proj-blood">
+                            <h2>北京血站采供血预测 · 时序预测</h2>
+                            <p class="detail-meta">技术总监 · Keras(LSTM) · XGBoost · Conv1D-LSTM · Spring Boot · Vue3 · MySQL</p>
+                            <div class="detail-links">
+                                <a class="btn-link primary" href="http://blood.weilantech.com/" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 3h6v6"/><path d="M10 14 21 3"/><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/></svg> 在线演示</a>
+                                <a class="btn-link" href="https://github.com/Allen-LPL/blood-prediction-algorithm" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2A10 10 0 0 0 2 12c0 4.42 2.87 8.17 6.84 9.5.5.09.66-.22.66-.48 0-.24-.01-.87-.01-1.7-2.78.6-3.37-1.34-3.37-1.34-.45-1.16-1.11-1.47-1.11-1.47-.91-.62.07-.6.07-.6 1 .07 1.53 1.03 1.53 1.03.9 1.53 2.34 1.09 2.91.83.09-.65.35-1.09.63-1.34-2.22-.25-4.55-1.11-4.55-4.94 0-1.09.39-1.98 1.03-2.68-.1-.25-.45-1.27.1-2.65 0 0 .84-.27 2.75 1.02a9.6 9.6 0 0 1 5 0c1.91-1.29 2.75-1.02 2.75-1.02.55 1.38.2 2.4.1 2.65.64.7 1.03 1.59 1.03 2.68 0 3.84-2.34 4.68-4.57 4.93.36.31.68.92.68 1.85 0 1.34-.01 2.42-.01 2.74 0 .27.16.58.67.48A10 10 0 0 0 12 2Z"/></svg> 算法</a>
+                                <a class="btn-link" href="https://github.com/Allen-LPL/blood-BN" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2A10 10 0 0 0 2 12c0 4.42 2.87 8.17 6.84 9.5.5.09.66-.22.66-.48 0-.24-.01-.87-.01-1.7-2.78.6-3.37-1.34-3.37-1.34-.45-1.16-1.11-1.47-1.11-1.47-.91-.62.07-.6.07-.6 1 .07 1.53 1.03 1.53 1.03.9 1.53 2.34 1.09 2.91.83.09-.65.35-1.09.63-1.34-2.22-.25-4.55-1.11-4.55-4.94 0-1.09.39-1.98 1.03-2.68-.1-.25-.45-1.27.1-2.65 0 0 .84-.27 2.75 1.02a9.6 9.6 0 0 1 5 0c1.91-1.29 2.75-1.02 2.75-1.02.55 1.38.2 2.4.1 2.65.64.7 1.03 1.59 1.03 2.68 0 3.84-2.34 4.68-4.57 4.93.36.31.68.92.68 1.85 0 1.34-.01 2.42-.01 2.74 0 .27.16.58.67.48A10 10 0 0 0 12 2Z"/></svg> 后端</a>
+                                <a class="btn-link" href="https://github.com/Allen-LPL/blood-three" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2A10 10 0 0 0 2 12c0 4.42 2.87 8.17 6.84 9.5.5.09.66-.22.66-.48 0-.24-.01-.87-.01-1.7-2.78.6-3.37-1.34-3.37-1.34-.45-1.16-1.11-1.47-1.11-1.47-.91-.62.07-.6.07-.6 1 .07 1.53 1.03 1.53 1.03.9 1.53 2.34 1.09 2.91.83.09-.65.35-1.09.63-1.34-2.22-.25-4.55-1.11-4.55-4.94 0-1.09.39-1.98 1.03-2.68-.1-.25-.45-1.27.1-2.65 0 0 .84-.27 2.75 1.02a9.6 9.6 0 0 1 5 0c1.91-1.29 2.75-1.02 2.75-1.02.55 1.38.2 2.4.1 2.65.64.7 1.03 1.59 1.03 2.68 0 3.84-2.34 4.68-4.57 4.93.36.31.68.92.68 1.85 0 1.34-.01 2.42-.01 2.74 0 .27.16.58.67.48A10 10 0 0 0 12 2Z"/></svg> 前端</a>
+                            </div>
+                            <p class="detail-summary">面向血站的采供血量时序预测系统(算法 + 全栈),按血站/血型维度预测采供血量,支撑采血计划与库存调度。</p>
+                            <ul>
+                                <li>三套建模并行对比:LSTM+XGBoost 集成(主)、Conv1D-LSTM 混合、独立 XGBoost。</li>
+                                <li>特征工程:日历 + 气象特征(2015-2026,节假日/工作日/周末),残差建模与样本加权。</li>
+                                <li>模型评估:多窗口滚动回测,按血品类别分模型;数据源支持 Excel 与 MySQL。</li>
+                                <li>技术原创性沉淀:已形成相关专利草案。</li>
+                            </ul>
+                            <div class="detail-highlight">
+                                <strong>亮点</strong>
+                                <p>三套时序建模并行对比 + 日历气象特征工程 + 滚动回测,把采供血预测做成可运营的采血/库存决策工具,并沉淀专利草案。</p>
+                                <span>Pitch:时序预测 · 特征工程 · 专利沉淀</span>
+                            </div>
+                        </div>
                         <div class="detail-panel" id="proj-1">
                             <h2>时刻体育 · 微信小程序 / H5 / APP</h2>
                             <p class="detail-meta">技术总监 · Spring Boot · Nacos · Redis · RabbitMQ · DevOps</p>
@@ -672,6 +859,10 @@ img{max-width:100%}
                         <div class="detail-panel" id="proj-2">
                             <h2>协和医院医学院信息所 · 论文/图像查重</h2>
                             <p class="detail-meta">技术总监 · Spring Boot · Python · Milvus · CLIP/DINOv2</p>
+                            <div class="detail-links">
+                                <a class="btn-link primary" href="https://seven.weilantech.com" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 3h6v6"/><path d="M10 14 21 3"/><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/></svg> 在线演示</a>
+                                <a class="btn-link" href="https://github.com/Allen-LPL/seven-server" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2A10 10 0 0 0 2 12c0 4.42 2.87 8.17 6.84 9.5.5.09.66-.22.66-.48 0-.24-.01-.87-.01-1.7-2.78.6-3.37-1.34-3.37-1.34-.45-1.16-1.11-1.47-1.11-1.47-.91-.62.07-.6.07-.6 1 .07 1.53 1.03 1.53 1.03.9 1.53 2.34 1.09 2.91.83.09-.65.35-1.09.63-1.34-2.22-.25-4.55-1.11-4.55-4.94 0-1.09.39-1.98 1.03-2.68-.1-.25-.45-1.27.1-2.65 0 0 .84-.27 2.75 1.02a9.6 9.6 0 0 1 5 0c1.91-1.29 2.75-1.02 2.75-1.02.55 1.38.2 2.4.1 2.65.64.7 1.03 1.59 1.03 2.68 0 3.84-2.34 4.68-4.57 4.93.36.31.68.92.68 1.85 0 1.34-.01 2.42-.01 2.74 0 .27.16.58.67.48A10 10 0 0 0 12 2Z"/></svg> seven-server</a>
+                            </div>
                             <p class="detail-summary">面向科研/政府场景的多模态查重系统，满足内网合规、海量向量检索与低成本算力策略。</p>
                             <ul>
                                 <li>面向 toG 科研场景，输出原型、排期、预算，覆盖论文、图像、医疗数据的相似度分析。</li>
@@ -689,6 +880,12 @@ img{max-width:100%}
                         <div class="detail-panel" id="proj-3">
                             <h2>Mydesign 跨境电商独立站</h2>
                             <p class="detail-meta">技术总监 · Spring Boot · AWS · Elasticsearch · 自动化运维</p>
+                            <div class="detail-links">
+                                <a class="btn-link primary" href="https://m.mydesign-fashion.com/" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 3h6v6"/><path d="M10 14 21 3"/><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/></svg> 在线演示</a>
+                                <a class="btn-link" href="https://github.com/Allen-LPL/mydesign" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2A10 10 0 0 0 2 12c0 4.42 2.87 8.17 6.84 9.5.5.09.66-.22.66-.48 0-.24-.01-.87-.01-1.7-2.78.6-3.37-1.34-3.37-1.34-.45-1.16-1.11-1.47-1.11-1.47-.91-.62.07-.6.07-.6 1 .07 1.53 1.03 1.53 1.03.9 1.53 2.34 1.09 2.91.83.09-.65.35-1.09.63-1.34-2.22-.25-4.55-1.11-4.55-4.94 0-1.09.39-1.98 1.03-2.68-.1-.25-.45-1.27.1-2.65 0 0 .84-.27 2.75 1.02a9.6 9.6 0 0 1 5 0c1.91-1.29 2.75-1.02 2.75-1.02.55 1.38.2 2.4.1 2.65.64.7 1.03 1.59 1.03 2.68 0 3.84-2.34 4.68-4.57 4.93.36.31.68.92.68 1.85 0 1.34-.01 2.42-.01 2.74 0 .27.16.58.67.48A10 10 0 0 0 12 2Z"/></svg> 后端</a>
+                                <a class="btn-link" href="https://github.com/Allen-LPL/mydesign-frontend" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2A10 10 0 0 0 2 12c0 4.42 2.87 8.17 6.84 9.5.5.09.66-.22.66-.48 0-.24-.01-.87-.01-1.7-2.78.6-3.37-1.34-3.37-1.34-.45-1.16-1.11-1.47-1.11-1.47-.91-.62.07-.6.07-.6 1 .07 1.53 1.03 1.53 1.03.9 1.53 2.34 1.09 2.91.83.09-.65.35-1.09.63-1.34-2.22-.25-4.55-1.11-4.55-4.94 0-1.09.39-1.98 1.03-2.68-.1-.25-.45-1.27.1-2.65 0 0 .84-.27 2.75 1.02a9.6 9.6 0 0 1 5 0c1.91-1.29 2.75-1.02 2.75-1.02.55 1.38.2 2.4.1 2.65.64.7 1.03 1.59 1.03 2.68 0 3.84-2.34 4.68-4.57 4.93.36.31.68.92.68 1.85 0 1.34-.01 2.42-.01 2.74 0 .27.16.58.67.48A10 10 0 0 0 12 2Z"/></svg> 前端</a>
+                                <a class="btn-link" href="https://github.com/Allen-LPL/mydesign-admin-frontend" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2A10 10 0 0 0 2 12c0 4.42 2.87 8.17 6.84 9.5.5.09.66-.22.66-.48 0-.24-.01-.87-.01-1.7-2.78.6-3.37-1.34-3.37-1.34-.45-1.16-1.11-1.47-1.11-1.47-.91-.62.07-.6.07-.6 1 .07 1.53 1.03 1.53 1.03.9 1.53 2.34 1.09 2.91.83.09-.65.35-1.09.63-1.34-2.22-.25-4.55-1.11-4.55-4.94 0-1.09.39-1.98 1.03-2.68-.1-.25-.45-1.27.1-2.65 0 0 .84-.27 2.75 1.02a9.6 9.6 0 0 1 5 0c1.91-1.29 2.75-1.02 2.75-1.02.55 1.38.2 2.4.1 2.65.64.7 1.03 1.59 1.03 2.68 0 3.84-2.34 4.68-4.57 4.93.36.31.68.92.68 1.85 0 1.34-.01 2.42-.01 2.74 0 .27.16.58.67.48A10 10 0 0 0 12 2Z"/></svg> 后台</a>
+                            </div>
                             <p class="detail-summary">负责跨境独立站从原型到出海增长，统一多站点、汇率税费、推荐算法与自动化运维。</p>
                             <ul>
                                 <li>与需求方共创产品原型与路线图，采用敏捷滚动迭代覆盖商品、交易、营销全链路。</li>
@@ -727,31 +924,52 @@ img{max-width:100%}
 
         <div class="section" id="OpenSourceProject">
             <h1>开源项目</h1>
+            <p class="center" style="margin-top:-6px;color:var(--text-3);font-size:13.5px;">点击卡片标题或封面，展开项目详情</p>
             <div class="oss-grid">
-                <div class="oss-card">
-                    <img src="https://pic1.imgdb.cn/item/691d84ce3203f7be0017d067.png" alt="AI智能论文查重"
-                        style="object-fit:contain;padding:4px;" class="smallimg" />
-                    <h2><a href="https://github.com/Allen-LPL/seven-server" target="_blank">AI智能论文查重</a></h2>
-                    <p>提供PDF文档和图片的批量上传检测，支持篇内查、策略查、全库查三种检测模式，集成SIFT、SURF等特征点匹配算法进行图像相似度分析，实现专家三级审核流程，自动生成标准化检测报告。</p>
-                </div>
-                <div class="oss-card">
-                    <img src="img/captcha-pic.png" alt="Captcha-Pic" />
-                    <h2><a href="https://github.com/Allen-LPL/Captcha-Pic" target="_blank">Captcha-Pic</a></h2>
-                    <p>Golang 拼图验证码，支持 HTML 嵌入与 API 接口，落地于高并发风控和业务验证场景。</p>
-                </div>
-                <div class="oss-card">
-                    <img src="img/docker1.png" alt="Laradock" />
-                    <h2><a href="https://github.com/Allen-LPL/Laradock" target="_blank">Laradock 二次开发</a></h2>
-                    <p>扩展 OpenResty WAF、VeryNginx、Golang、Python、GitLab Runner、Filebeat 等镜像，打造更贴合生产的容器基座。</p>
-                </div>
-                <div class="oss-card">
-                    <img src="img/cron.png" alt="webCron" />
-                    <h2><a href="https://github.com/Allen-LPL/webCron" target="_blank">webCron</a></h2>
-                    <p>Golang + Beego 的 Web 版 crontab，提供权限控制、任务模糊搜索、终止与邮件通知等运维友好能力。</p>
-                </div>
+                <article class="oss-card" data-oss="seven" tabindex="0" role="button" aria-label="AI 智能论文查重 — 查看详情">
+                    <div class="oss-cover"><img src="img/oss-seven.svg" alt="AI 智能论文查重 封面" /></div>
+                    <div class="oss-body">
+                        <h2><a href="https://seven.weilantech.com" target="_blank" rel="noopener">AI 智能论文查重</a></h2>
+                        <p class="oss-tagline">面向科研 / 高校的论文与图像相似性查重平台</p>
+                        <span class="oss-expand">查看详情 →</span>
+                    </div>
+                </article>
+                <article class="oss-card" data-oss="blood" tabindex="0" role="button" aria-label="血站采供血预测 — 查看详情">
+                    <div class="oss-cover"><img src="img/oss-blood.svg" alt="血站采供血预测 封面" /></div>
+                    <div class="oss-body">
+                        <h2><a href="http://blood.weilantech.com/" target="_blank" rel="noopener">血站采供血预测</a></h2>
+                        <p class="oss-tagline">面向血站的采供血量时序预测(算法 + 全栈)</p>
+                        <span class="oss-expand">查看详情 →</span>
+                    </div>
+                </article>
+                <article class="oss-card" data-oss="emergency" tabindex="0" role="button" aria-label="院前急救多模态评分 — 查看详情">
+                    <div class="oss-cover"><img src="img/oss-emergency.svg" alt="院前急救多模态评分 封面" /></div>
+                    <div class="oss-body">
+                        <h2><a href="https://github.com/Allen-LPL/Emergency-AI-Examiner" target="_blank" rel="noopener">院前急救多模态评分</a></h2>
+                        <p class="oss-tagline">120 三人协同急救考核视频自动评分</p>
+                        <span class="oss-expand">查看详情 →</span>
+                    </div>
+                </article>
+                <article class="oss-card" data-oss="mydesign" tabindex="0" role="button" aria-label="Mydesign 跨境电商 — 查看详情">
+                    <div class="oss-cover"><img src="img/oss-mydesign.svg" alt="Mydesign 跨境电商 封面" /></div>
+                    <div class="oss-body">
+                        <h2><a href="https://m.mydesign-fashion.com/" target="_blank" rel="noopener">Mydesign 跨境电商</a></h2>
+                        <p class="oss-tagline">跨境电商独立站，从原型到出海增长</p>
+                        <span class="oss-expand">查看详情 →</span>
+                    </div>
+                </article>
             </div>
             <p class="center" style="margin-top:18px;">更多内容欢迎访问 <a href="https://github.com/Allen-LPL" target="_blank"
                     class="highlight">GitHub</a></p>
+        </div>
+
+        <!-- open-source detail modal -->
+        <div class="oss-modal" id="ossModal" aria-hidden="true">
+            <div class="oss-modal__scrim" data-close></div>
+            <div class="oss-modal__dialog" role="dialog" aria-modal="true" aria-labelledby="ossModalTitle">
+                <button class="oss-modal__close" type="button" aria-label="关闭" data-close>&times;</button>
+                <div class="oss-modal__wrap" id="ossModalBody"></div>
+            </div>
         </div>
 
         <div class="section" id="architecture-gallery">
@@ -824,6 +1042,28 @@ img{max-width:100%}
                         <span class="chip">向量索引</span>
                         <span class="chip">召回/精排</span>
                         <span class="chip">多模态</span>
+                    </div>
+                </div>
+                <div class="tech-card featured">
+                    <span class="scope-badge">AI / 大模型</span>
+                    <h3>大模型应用 · 多模态 AI</h3>
+                    <p>SSE 流式对话、语音唤醒 / ASR / TTS、OpenGL 数字人渲染；YOLOv8 + ByteTrack 视频理解、FunASR + VAD + 说话人分离、LSTM/XGBoost 时序预测。</p>
+                    <div class="chip-row">
+                        <span class="chip">SSE 流式</span>
+                        <span class="chip">语音 / 数字人</span>
+                        <span class="chip">YOLOv8 / ByteTrack</span>
+                        <span class="chip">时序预测</span>
+                    </div>
+                </div>
+                <div class="tech-card">
+                    <span class="scope-badge">搜索 / 推荐</span>
+                    <h3>搜索 · 召回 · 推荐</h3>
+                    <p>Elasticsearch + Milvus 双引擎、Canal Binlog 增量同步；召回-粗排-精排-重排链路、用户画像与行为特征，千人千面搜索与推荐工程化落地。</p>
+                    <div class="chip-row">
+                        <span class="chip">ES + Milvus</span>
+                        <span class="chip">召回/精排/重排</span>
+                        <span class="chip">用户画像</span>
+                        <span class="chip">千人千面</span>
                     </div>
                 </div>
                 <div class="tech-card">
@@ -929,8 +1169,8 @@ img{max-width:100%}
             </h2>
             <p><a href="https://twitter.com/AllenLiou404" target="_blank">Twitter: @AllenLiou404</a></p>
             <p><a href="mailto:liupengliang1012@gmail.com" target="_blank">Email: liupengliang1012@gmail.com</a></p>
-            <p><a href="https://wl-statics.weilantech.com/yx/2025-%E7%AE%80%E5%8E%86.pdf" target="_blank"
-                    class="highlight">下载 2025 简历（Markdown）</a></p>
+            <p><a href="https://wl-statics.weilantech.com/yx/2026-%E7%AE%80%E5%8E%86.pdf" target="_blank"
+                    class="highlight">下载 2026 简历（PDF）</a></p>
         </div>
         <img src="" alt="" class="bigimg">
         <div class="mask">
@@ -1003,6 +1243,127 @@ img{max-width:100%}
         });
         if(mask) mask.addEventListener('click',close);
         document.addEventListener('keydown',function(e){ if(e.key==='Escape') close(); });
+
+        // ---- open-source detail modal (motion-forward) ----
+        var reduceMotion=window.matchMedia&&window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+        var IC_DEMO='<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 3h6v6"/><path d="M10 14 21 3"/><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/></svg>';
+        var IC_CODE='<svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2A10 10 0 0 0 2 12c0 4.42 2.87 8.17 6.84 9.5.5.09.66-.22.66-.48 0-.24-.01-.87-.01-1.7-2.78.6-3.37-1.34-3.37-1.34-.45-1.16-1.11-1.47-1.11-1.47-.91-.62.07-.6.07-.6 1 .07 1.53 1.03 1.53 1.03.9 1.53 2.34 1.09 2.91.83.09-.65.35-1.09.63-1.34-2.22-.25-4.55-1.11-4.55-4.94 0-1.09.39-1.98 1.03-2.68-.1-.25-.45-1.27.1-2.65 0 0 .84-.27 2.75 1.02a9.6 9.6 0 0 1 5 0c1.91-1.29 2.75-1.02 2.75-1.02.55 1.38.2 2.4.1 2.65.64.7 1.03 1.59 1.03 2.68 0 3.84-2.34 4.68-4.57 4.93.36.31.68.92.68 1.85 0 1.34-.01 2.42-.01 2.74 0 .27.16.58.67.48A10 10 0 0 0 12 2Z"/></svg>';
+        var OSS={
+          seven:{cover:'img/oss-seven.svg',title:'AI 智能论文查重',tagline:'面向科研 / 高校的论文与图像相似性查重平台',
+            stats:[{n:500,u:'万',l:'图像向量索引'},{n:3,u:'种',l:'检测模式'},{n:3,u:'级',l:'专家审核'}],
+            desc:'PDF 文档与图片批量上传检测，支持篇内查、策略查、全库查三种模式；集成 SIFT / SURF 特征点匹配与向量检索进行图像相似度分析，落地专家三级审核流程并自动生成标准化检测报告。',
+            chips:['Spring Boot','Python','Milvus','CLIP','DINOv2','ResNet50','SIFT/SURF','Vue3','RabbitMQ','OpenResty'],
+            hl:['全球 PDF 解析 + 500 万小图向量索引设计与检索，支撑大规模库比对','篇内 / 策略 / 全库 三种检测模式，覆盖不同科研查重场景','专家三级审核流程 + 标准化报告输出，满足验收与留痕','内网交付、数据安全隔离、CI/CD 与运维监控闭环'],
+            links:[{t:'在线演示',u:'https://seven.weilantech.com',demo:true},{t:'seven-server',u:'https://github.com/Allen-LPL/seven-server'}]},
+          blood:{cover:'img/oss-blood.svg',title:'血站采供血预测',tagline:'面向血站的采供血量时序预测(算法 + 全栈)',
+            stats:[{n:3,u:'套',l:'并行建模'},{n:12,u:'年',l:'特征跨度 2015–26'},{txt:'专利草案',l:'技术沉淀'}],
+            desc:'按血站/血型维度的采供血量时序预测，支撑采血计划与库存调度；三套建模并行对比，配合日历 + 气象特征工程、残差建模、样本加权与多窗口滚动回测。',
+            chips:['Keras/LSTM','XGBoost','Conv1D-LSTM','Pandas/Numpy','Spring Boot','Vue3','MySQL'],
+            hl:['LSTM+XGBoost 集成(主)、Conv1D-LSTM 混合、独立 XGBoost 三套建模并行对比','日历 + 气象特征工程(2015–2026，节假日/工作日/周末)，残差建模与样本加权','多窗口滚动回测，按血品类别分模型；数据源支持 Excel 与 MySQL','已形成相关专利草案，支撑采血计划与库存调度'],
+            links:[{t:'在线演示',u:'http://blood.weilantech.com/',demo:true},{t:'算法',u:'https://github.com/Allen-LPL/blood-prediction-algorithm'},{t:'后端',u:'https://github.com/Allen-LPL/blood-BN'},{t:'前端',u:'https://github.com/Allen-LPL/blood-three'}]},
+          emergency:{cover:'img/oss-emergency.svg',title:'院前急救多模态评分',tagline:'120 三人协同急救考核视频自动评分',
+            stats:[{n:6,u:'阶段',l:'规则引擎评分'},{n:3,u:'模态',l:'视频·音频·传感器'},{txt:'GPU',l:'容器化部署'}],
+            desc:'上传三人一组的院前急救考核视频(含音频)，自动解析动作与口令并给出百分制评分与改进建议；视频、音频、传感器事件统一到同一时间轴。',
+            chips:['Python','FastAPI','YOLOv8','ByteTrack','FunASR','Silero-VAD','pyannote','Celery','PostgreSQL','React','Docker(GPU)'],
+            hl:['YOLOv8 人体检测 + ByteTrack 多人跟踪 + 姿态/动作识别，判定协同急救动作','FunASR 中文语音识别 + VAD + 说话人分离，口令/呼救关键词匹配','视频 + 音频 + 传感器统一时间轴，规则引擎 6 阶段百分制评分','HTML/PDF 报告：分项得分、雷达图、扣分原因、时间轴回放与改进建议'],
+            links:[{t:'Emergency-AI-Examiner',u:'https://github.com/Allen-LPL/Emergency-AI-Examiner'}]},
+          mydesign:{cover:'img/oss-mydesign.svg',title:'Mydesign 跨境电商',tagline:'跨境电商独立站，从原型到出海增长',
+            stats:[{txt:'千人千面',l:'搜索 / 推荐'},{n:3,u:'仓',l:'前后台代码'},{txt:'AWS',l:'自动化出海'}],
+            desc:'跨境电商独立站出海：AWS 部署、跨境数据同步与国内访问加速，处理汇率/税费/时区/语言差异，落地千人千面搜索与推荐的工程化。',
+            chips:['Spring Boot','Python','Elasticsearch','Redis','RabbitMQ','Nacos','Vue3','UniApp','AWS','Docker','OpenResty'],
+            hl:['与需求方共创原型与路线图，敏捷滚动迭代覆盖商品/交易/营销全链路','AWS 部署 + 跨境数据同步 + 任务编排，优化国内访问海外链路与加速','处理汇率/税费/时区/语言差异，多站点配置与离线/实时同步','千人千面搜索与推荐工程化落地，首屏性能优化与监控告警'],
+            links:[{t:'在线演示',u:'https://m.mydesign-fashion.com/',demo:true},{t:'后端',u:'https://github.com/Allen-LPL/mydesign'},{t:'前端',u:'https://github.com/Allen-LPL/mydesign-frontend'},{t:'后台',u:'https://github.com/Allen-LPL/mydesign-admin-frontend'}]}
+        };
+        function esc(s){return String(s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;');}
+        function renderOss(d){
+          var stats=d.stats.map(function(s){
+            var val=(s.n!=null)?('<b data-count="'+s.n+'" data-suffix="'+(s.u||'')+'">0'+(s.u||'')+'</b>'):('<b>'+esc(s.txt)+'</b>');
+            return '<div class="oss-stat">'+val+'<span>'+esc(s.l)+'</span></div>';
+          }).join('');
+          var chips=d.chips.map(function(c){return '<span class="chip">'+esc(c)+'</span>';}).join('');
+          var hl=d.hl.map(function(h){return '<li>'+esc(h)+'</li>';}).join('');
+          var links=d.links.map(function(l){
+            return '<a class="btn-link'+(l.demo?' primary':'')+'" href="'+l.u+'" target="_blank" rel="noopener">'+(l.demo?IC_DEMO:IC_CODE)+' '+esc(l.t)+'</a>';
+          }).join('');
+          return ''+
+            '<div class="oss-hero"><img src="'+d.cover+'" alt="" /><div class="oss-hero__title"><h2 id="ossModalTitle">'+esc(d.title)+'</h2><p>'+esc(d.tagline)+'</p></div></div>'+
+            '<div class="oss-content">'+
+              '<div class="oss-stats oss-reveal">'+stats+'</div>'+
+              '<div class="oss-reveal"><p class="oss-sec-label">项目简介</p><p class="oss-sec-desc">'+esc(d.desc)+'</p></div>'+
+              '<div class="oss-reveal"><p class="oss-sec-label">技术栈</p><div class="oss-chips">'+chips+'</div></div>'+
+              '<div class="oss-reveal"><p class="oss-sec-label">核心亮点</p><ul class="oss-hl">'+hl+'</ul></div>'+
+              '<div class="oss-reveal"><p class="oss-sec-label">链接</p><div class="detail-links">'+links+'</div></div>'+
+            '</div>';
+        }
+        function countUp(scope){
+          scope.querySelectorAll('[data-count]').forEach(function(el){
+            var end=parseFloat(el.getAttribute('data-count')),suf=el.getAttribute('data-suffix')||'',dur=900,start=null;
+            function step(ts){ if(start===null)start=ts; var p=Math.min(1,(ts-start)/dur),e=1-Math.pow(1-p,3);
+              el.textContent=Math.round(end*e)+suf; if(p<1)requestAnimationFrame(step); else el.textContent=end+suf; }
+            requestAnimationFrame(step);
+          });
+        }
+        var ossModal=document.getElementById('ossModal');
+        if(ossModal){
+          var ossDialog=ossModal.querySelector('.oss-modal__dialog'),
+              ossBody=document.getElementById('ossModalBody'),
+              ossLastFocus=null, ossCurrentCard=null, ossClosing=false;
+          function ossOpen(id,card){
+            var d=OSS[id]; if(!d) return;
+            ossBody.innerHTML=renderOss(d);
+            ossModal.classList.add('open'); void ossModal.offsetWidth;
+            ossModal.classList.add('show');
+            document.body.style.overflow='hidden';
+            ossLastFocus=document.activeElement; ossCurrentCard=card;
+            ossDialog.style.opacity='1';
+            if(card && !reduceMotion && ossDialog.animate){
+              var dr=ossDialog.getBoundingClientRect(), cr=card.getBoundingClientRect();
+              var s=Math.max(.12,Math.min(cr.width/dr.width,cr.height/dr.height));
+              var tx=(cr.left+cr.width/2)-(dr.left+dr.width/2), ty=(cr.top+cr.height/2)-(dr.top+dr.height/2);
+              ossDialog.animate([
+                {opacity:0,transform:'translate(-50%,-50%) translate('+tx+'px,'+ty+'px) scale('+s+')'},
+                {opacity:1,transform:'translate(-50%,-50%) translate(0,0) scale(1)'}
+              ],{duration:300,easing:'cubic-bezier(.22,1,.36,1)'});
+            }
+            var revs=ossBody.querySelectorAll('.oss-reveal');
+            revs.forEach(function(el,i){ el.style.animationDelay=(reduceMotion?0:(130+i*70))+'ms'; });
+            if(!reduceMotion) countUp(ossBody);
+            var cb=ossModal.querySelector('.oss-modal__close'); if(cb) cb.focus();
+          }
+          function ossClose(){
+            if(!ossModal.classList.contains('open')||ossClosing) return;
+            var done=function(){ ossClosing=false; ossModal.classList.remove('open','show','closing');
+              ossBody.innerHTML=''; ossDialog.style.opacity=''; document.body.style.overflow='';
+              if(ossLastFocus&&ossLastFocus.focus) ossLastFocus.focus(); ossCurrentCard=null; };
+            if(reduceMotion||!ossDialog.animate){ done(); return; }
+            ossClosing=true; ossModal.classList.add('closing');
+            var dr=ossDialog.getBoundingClientRect(),
+                cr=ossCurrentCard?ossCurrentCard.getBoundingClientRect():null, kf;
+            if(cr){ var s=Math.max(.12,Math.min(cr.width/dr.width,cr.height/dr.height));
+              var tx=(cr.left+cr.width/2)-(dr.left+dr.width/2), ty=(cr.top+cr.height/2)-(dr.top+dr.height/2);
+              kf=[{opacity:1,transform:'translate(-50%,-50%) translate(0,0) scale(1)'},
+                  {opacity:0,transform:'translate(-50%,-50%) translate('+tx+'px,'+ty+'px) scale('+s+')'}];
+            } else { kf=[{opacity:1},{opacity:0}]; }
+            var a=ossDialog.animate(kf,{duration:240,easing:'cubic-bezier(.4,0,.2,1)'});
+            a.onfinish=done; setTimeout(function(){ if(ossClosing) done(); },420);
+          }
+          document.querySelectorAll('.oss-card').forEach(function(card){
+            card.addEventListener('click',function(e){ e.preventDefault(); ossOpen(card.getAttribute('data-oss'),card); });
+            card.addEventListener('keydown',function(e){
+              if(e.key==='Enter'||e.key===' '){ e.preventDefault(); ossOpen(card.getAttribute('data-oss'),card); }
+            });
+            if(!reduceMotion){
+              card.addEventListener('pointermove',function(e){
+                if(e.pointerType==='touch') return;
+                var r=card.getBoundingClientRect(), px=(e.clientX-r.left)/r.width-.5, py=(e.clientY-r.top)/r.height-.5;
+                card.style.transform='translateY(-6px) rotateX('+(-py*4).toFixed(2)+'deg) rotateY('+(px*4).toFixed(2)+'deg)';
+              });
+              card.addEventListener('pointerleave',function(){ card.style.transform=''; });
+            }
+          });
+          ossModal.querySelectorAll('[data-close]').forEach(function(el){ el.addEventListener('click',ossClose); });
+          document.addEventListener('keydown',function(e){ if(e.key==='Escape') ossClose(); });
+        }
     })();
     </script>
 </body>
