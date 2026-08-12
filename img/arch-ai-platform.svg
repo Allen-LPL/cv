@@ -1,0 +1,122 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 540" font-family="ui-sans-serif,system-ui,'PingFang SC','Microsoft YaHei',sans-serif" role="img" aria-label="多模态 AI 模型开发与工程化平台架构图">
+  <defs>
+    <linearGradient id="ap-bg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#0e1626"/><stop offset="1" stop-color="#0a0f1b"/>
+    </linearGradient>
+    <pattern id="ap-grid" width="40" height="40" patternUnits="userSpaceOnUse">
+      <path d="M40 0H0V40" fill="none" stroke="#ffffff" stroke-opacity=".04"/>
+    </pattern>
+    <marker id="ap-arrow" markerWidth="9" markerHeight="9" refX="6" refY="3" orient="auto">
+      <path d="M0 0 L6 3 L0 6 Z" fill="#5b7089"/>
+    </marker>
+    <marker id="ap-arrow-mg" markerWidth="9" markerHeight="9" refX="6" refY="3" orient="auto">
+      <path d="M0 0 L6 3 L0 6 Z" fill="#e879a6"/>
+    </marker>
+  </defs>
+  <rect width="1000" height="540" fill="url(#ap-bg)"/>
+  <rect width="1000" height="540" fill="url(#ap-grid)"/>
+
+  <!-- title -->
+  <text x="500" y="40" text-anchor="middle" font-size="23" font-weight="700" fill="#f4f8fd">多模态 AI 模型开发与工程化平台</text>
+  <text x="500" y="63" text-anchor="middle" font-size="13" fill="#9fb0c3">医疗急救 · 视觉 / 语音 / 对话 / 时序 融合 + MLOps 闭环</text>
+
+  <!-- ================= LEFT: hardware rail ================= -->
+  <g>
+    <rect x="18" y="96" width="98" height="326" rx="12" fill="#0c1a1a" stroke="#2dd4bf" stroke-opacity=".4"/>
+    <text x="67" y="120" text-anchor="middle" font-size="12" font-weight="600" fill="#5eead4">硬件通信</text>
+    <g font-size="11" fill="#cbeee7" text-anchor="middle">
+      <rect x="28" y="134" width="78" height="34" rx="7" fill="#0f2422" stroke="#2dd4bf" stroke-opacity=".3"/><text x="67" y="155">蓝牙 BLE</text>
+      <rect x="28" y="176" width="78" height="46" rx="7" fill="#0f2422" stroke="#2dd4bf" stroke-opacity=".3"/><text x="67" y="195">UART 串口</text><text x="67" y="211" font-size="9" fill="#7fd8cb">RS485/232/TTL</text>
+      <rect x="28" y="230" width="78" height="34" rx="7" fill="#0f2422" stroke="#2dd4bf" stroke-opacity=".3"/><text x="67" y="251">Socket</text>
+    </g>
+    <text x="67" y="290" text-anchor="middle" font-size="10" fill="#7fd8cb">对接</text>
+    <text x="67" y="306" text-anchor="middle" font-size="10.5" fill="#cbeee7">CPR 模拟人</text>
+    <text x="67" y="322" text-anchor="middle" font-size="10.5" fill="#cbeee7">AED 模拟器</text>
+    <line x1="116" y1="150" x2="126" y2="150" stroke="#2dd4bf" stroke-width="1.5" marker-end="url(#ap-arrow)"/>
+    <line x1="116" y1="300" x2="126" y2="300" stroke="#2dd4bf" stroke-width="1.5" marker-end="url(#ap-arrow)"/>
+  </g>
+
+  <!-- ================= MAIN bands ================= -->
+  <!-- A application -->
+  <g>
+    <rect x="128" y="96" width="684" height="74" rx="12" fill="#38bdf8" fill-opacity=".05" stroke="#38bdf8" stroke-opacity=".28"/>
+    <rect x="140" y="88" width="86" height="20" rx="10" fill="#0e1626" stroke="#38bdf8" stroke-opacity=".4"/><text x="183" y="102" text-anchor="middle" font-size="11" font-weight="600" fill="#7dd3fc">应用层</text>
+    <g font-size="12" fill="#e6edf5" text-anchor="middle">
+      <rect x="150" y="116" width="150" height="44" rx="8" fill="#0f1a2c" stroke="#ffffff" stroke-opacity=".13"/><text x="225" y="134">Android 平板</text><text x="225" y="150" font-size="9.5" fill="#9fb0c3">CPR / 海姆立克</text>
+      <rect x="312" y="116" width="150" height="44" rx="8" fill="#0f1a2c" stroke="#ffffff" stroke-opacity=".13"/><text x="387" y="142">AI 急救侠 APP</text>
+      <rect x="474" y="116" width="150" height="44" rx="8" fill="#0f1a2c" stroke="#ffffff" stroke-opacity=".13"/><text x="549" y="142">Web 考核后台</text>
+      <rect x="636" y="116" width="150" height="44" rx="8" fill="#0f1a2c" stroke="#ffffff" stroke-opacity=".13"/><text x="711" y="142">评分报告</text>
+    </g>
+  </g>
+  <line x1="470" y1="170" x2="470" y2="184" stroke="#5b7089" stroke-width="1.6" marker-end="url(#ap-arrow)"/>
+
+  <!-- B gateway -->
+  <g>
+    <rect x="128" y="186" width="684" height="66" rx="12" fill="#38bdf8" fill-opacity=".05" stroke="#38bdf8" stroke-opacity=".28"/>
+    <rect x="140" y="178" width="112" height="20" rx="10" fill="#0e1626" stroke="#38bdf8" stroke-opacity=".4"/><text x="196" y="192" text-anchor="middle" font-size="11" font-weight="600" fill="#7dd3fc">网关 / 服务层</text>
+    <g font-size="12" fill="#e6edf5" text-anchor="middle">
+      <rect x="150" y="202" width="150" height="42" rx="8" fill="#0f1a2c" stroke="#ffffff" stroke-opacity=".13"/><text x="225" y="228">OpenResty 网关</text>
+      <rect x="312" y="202" width="150" height="42" rx="8" fill="#0f1a2c" stroke="#ffffff" stroke-opacity=".13"/><text x="387" y="228">FastAPI / Boot</text>
+      <rect x="474" y="202" width="150" height="42" rx="8" fill="#0f1a2c" stroke="#ffffff" stroke-opacity=".13"/><text x="549" y="228">SSE 流式</text>
+      <rect x="636" y="202" width="150" height="42" rx="8" fill="#0f1a2c" stroke="#ffffff" stroke-opacity=".13"/><text x="711" y="228">鉴权 / 限流</text>
+    </g>
+  </g>
+  <line x1="470" y1="252" x2="470" y2="266" stroke="#5b7089" stroke-width="1.6" marker-end="url(#ap-arrow)"/>
+
+  <!-- C inference -->
+  <g>
+    <rect x="128" y="268" width="684" height="158" rx="12" fill="#e879a6" fill-opacity=".05" stroke="#e879a6" stroke-opacity=".32"/>
+    <rect x="140" y="260" width="98" height="20" rx="10" fill="#0e1626" stroke="#e879a6" stroke-opacity=".45"/><text x="189" y="274" text-anchor="middle" font-size="11" font-weight="600" fill="#f0a6c4">AI 推理层</text>
+    <g font-size="12" fill="#e6edf5" text-anchor="middle">
+      <rect x="150" y="286" width="150" height="56" rx="8" fill="#141021" stroke="#e879a6" stroke-opacity=".28"/><text x="225" y="308">视觉</text><text x="225" y="325" font-size="9.5" fill="#c9a7b8">YOLOv8+ByteTrack</text>
+      <rect x="312" y="286" width="150" height="56" rx="8" fill="#141021" stroke="#e879a6" stroke-opacity=".28"/><text x="387" y="308">语音</text><text x="387" y="325" font-size="9.5" fill="#c9a7b8">FunASR+VAD+分离</text>
+      <rect x="474" y="286" width="150" height="56" rx="8" fill="#141021" stroke="#e879a6" stroke-opacity=".28"/><text x="549" y="308">对话</text><text x="549" y="325" font-size="9" fill="#c9a7b8">大模型+RAG+数字人</text>
+      <rect x="636" y="286" width="150" height="56" rx="8" fill="#141021" stroke="#e879a6" stroke-opacity=".28"/><text x="711" y="308">时序</text><text x="711" y="325" font-size="9.5" fill="#c9a7b8">LSTM+XGBoost</text>
+      <rect x="150" y="352" width="636" height="60" rx="8" fill="#e879a6" fill-opacity=".1" stroke="#e879a6" stroke-opacity=".45"/>
+      <text x="468" y="378" font-size="14" font-weight="650" fill="#f7c9dd">多模态统一时间轴 · 融合</text>
+      <text x="468" y="398" font-size="11" fill="#e6a9c4">视频 / 音频 / 传感器对齐 → 规则引擎百分制评分 → 雷达图 · 扣分原因 · 改进建议</text>
+    </g>
+  </g>
+  <line x1="470" y1="426" x2="470" y2="440" stroke="#5b7089" stroke-width="1.6" marker-end="url(#ap-arrow)"/>
+
+  <!-- D data -->
+  <g>
+    <rect x="128" y="442" width="684" height="74" rx="12" fill="#818cf8" fill-opacity=".05" stroke="#818cf8" stroke-opacity=".3"/>
+    <rect x="140" y="434" width="112" height="20" rx="10" fill="#0e1626" stroke="#818cf8" stroke-opacity=".45"/><text x="196" y="448" text-anchor="middle" font-size="11" font-weight="600" fill="#a5b4fc">数据 / 特征层</text>
+    <g font-size="10.5" fill="#e6edf5" text-anchor="middle">
+      <rect x="150" y="462" width="100" height="46" rx="8" fill="#12142a" stroke="#818cf8" stroke-opacity=".25"/><text x="200" y="482">PostgreSQL</text><text x="200" y="496" font-size="9.5" fill="#aab0d8">/ MySQL</text>
+      <rect x="262" y="462" width="100" height="46" rx="8" fill="#12142a" stroke="#818cf8" stroke-opacity=".25"/><text x="312" y="489">Redis</text>
+      <rect x="374" y="462" width="100" height="46" rx="8" fill="#12142a" stroke="#818cf8" stroke-opacity=".25"/><text x="424" y="482">对象存储</text><text x="424" y="496" font-size="9" fill="#aab0d8">音视频</text>
+      <rect x="486" y="462" width="100" height="46" rx="8" fill="#12142a" stroke="#818cf8" stroke-opacity=".25"/><text x="536" y="482">特征工程</text><text x="536" y="496" font-size="9" fill="#aab0d8">日历+气象</text>
+      <rect x="598" y="462" width="100" height="46" rx="8" fill="#12142a" stroke="#818cf8" stroke-opacity=".25"/><text x="648" y="482">Milvus</text><text x="648" y="496" font-size="9" fill="#aab0d8">向量库</text>
+      <rect x="710" y="462" width="76" height="46" rx="8" fill="#12142a" stroke="#818cf8" stroke-opacity=".25"/><text x="748" y="482">ES</text><text x="748" y="496" font-size="9" fill="#aab0d8">检索</text>
+    </g>
+  </g>
+
+  <!-- ================= RIGHT: MLOps loop ================= -->
+  <g>
+    <rect x="828" y="96" width="156" height="420" rx="12" fill="#1a1406" stroke="#f5b451" stroke-opacity=".38"/>
+    <text x="906" y="120" text-anchor="middle" font-size="12" font-weight="600" fill="#f5c877">MLOps 闭环</text>
+    <g font-size="11" fill="#f3e2c4" text-anchor="middle">
+      <rect x="844" y="132" width="108" height="40" rx="8" fill="#221a08" stroke="#f5b451" stroke-opacity=".3"/><text x="898" y="156">采集 / 标注</text>
+      <rect x="844" y="188" width="108" height="40" rx="8" fill="#221a08" stroke="#f5b451" stroke-opacity=".3"/><text x="898" y="212">训练 (GPU)</text>
+      <rect x="844" y="244" width="108" height="40" rx="8" fill="#221a08" stroke="#f5b451" stroke-opacity=".3"/><text x="898" y="268">注册 / 评估</text>
+      <rect x="844" y="300" width="108" height="40" rx="8" fill="#221a08" stroke="#f5b451" stroke-opacity=".3"/><text x="898" y="324">部署 Docker</text>
+      <rect x="844" y="356" width="108" height="40" rx="8" fill="#221a08" stroke="#f5b451" stroke-opacity=".3"/><text x="898" y="380">监控 Grafana</text>
+    </g>
+    <g stroke="#c08a2e" stroke-width="1.5" fill="none">
+      <line x1="898" y1="172" x2="898" y2="186" marker-end="url(#ap-arrow)"/>
+      <line x1="898" y1="228" x2="898" y2="242" marker-end="url(#ap-arrow)"/>
+      <line x1="898" y1="284" x2="898" y2="298" marker-end="url(#ap-arrow)"/>
+      <line x1="898" y1="340" x2="898" y2="354" marker-end="url(#ap-arrow)"/>
+      <path d="M952 376 q26 0 26 -30 V182 q0 -30 -26 -30" stroke="#f5b451" stroke-opacity=".7" stroke-dasharray="5 5" marker-end="url(#ap-arrow)"/>
+    </g>
+    <text x="972" y="270" font-size="9" fill="#c9a24a" transform="rotate(90 972 270)">持续迭代</text>
+  </g>
+
+  <!-- cross links: data -> training ; deploy -> inference -->
+  <path d="M812 480 H820 q10 0 10 -12 V212 q0 -4 12 -4" fill="none" stroke="#8a6a3a" stroke-width="1.4" stroke-dasharray="4 5" marker-end="url(#ap-arrow)"/>
+  <text x="824" y="452" font-size="9" fill="#c9a24a" text-anchor="end">数据供训练</text>
+  <path d="M844 320 H822 q-10 0 -10 -12 V300" fill="none" stroke="#b56b8a" stroke-width="1.4" stroke-dasharray="4 5" marker-end="url(#ap-arrow-mg)"/>
+  <text x="820" y="336" font-size="9" fill="#e0a0bd" text-anchor="end">部署上线</text>
+</svg>
