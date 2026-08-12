@@ -405,7 +405,7 @@ img{max-width:100%}
   transition:transform .55s cubic-bezier(.22,1,.36,1)}
 .oss-card:hover .oss-cover img{transform:scale(1.06)}
 .oss-cover::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,transparent 52%,rgba(11,17,30,.55))}
-.oss-body{padding:17px 22px 20px;display:flex;flex-direction:column;gap:8px}
+.oss-body{padding:17px 22px 20px;display:flex;flex-direction:column;align-items:center;text-align:center;gap:8px}
 .oss-body h2{margin:0;font-size:17px;font-weight:650}
 .oss-body h2 a{color:#eef4fb}
 .oss-body h2 a:hover{color:var(--accent)}
@@ -456,7 +456,7 @@ img{max-width:100%}
 @keyframes ossReveal{from{opacity:0;transform:translateY(16px)}to{opacity:1;transform:none}}
 
 /* -------- architecture solutions (redesigned, clickable) -------- */
-.arch-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:22px;margin-top:8px;perspective:1200px}
+.arch-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:22px;margin-top:8px;perspective:1200px}
 .arch-card{
   position:relative;overflow:hidden;cursor:pointer;border-radius:var(--radius);
   background:linear-gradient(180deg,var(--surface),var(--surface-2));
@@ -466,8 +466,7 @@ img{max-width:100%}
 }
 .arch-card.reveal-init{opacity:0;transform:translateY(26px)}
 .arch-card:hover{border-color:var(--border-hi);box-shadow:0 26px 54px rgba(2,6,16,.55),0 0 0 1px var(--accent-soft)}
-.arch-card:focus-visible{outline:2px solid var(--ac,var(--accent));outline-offset:3px}
-.arch-card::before{content:"";position:absolute;top:0;left:0;right:0;height:3px;z-index:2;background:linear-gradient(90deg,var(--ac,var(--accent)),transparent 72%)}
+.arch-card:focus-visible{outline:2px solid var(--accent);outline-offset:3px}
 .arch-cover{position:relative;width:100%;aspect-ratio:16/10;overflow:hidden;border-bottom:1px solid var(--border);background:var(--bg-1)}
 .arch-cover img{width:100%;height:100%;object-fit:cover;object-position:top center;display:block;border:0;border-radius:0;padding:0;background:#0c1320;transition:transform .55s cubic-bezier(.22,1,.36,1)}
 .arch-card:hover .arch-cover img{transform:scale(1.05)}
@@ -498,6 +497,7 @@ img{max-width:100%}
 @media (max-width:1024px){
   .techstack-grid{grid-template-columns:1fr}
   .techstack-grid .span-2{grid-column:span 1}
+  .arch-grid{grid-template-columns:repeat(2,minmax(0,1fr))}
   .timeline-layout{flex-direction:column;gap:22px}
   .timeline-list{flex:1 1 auto;width:100%;padding-left:30px}
   .timeline-list::before{left:12px}
@@ -507,6 +507,7 @@ img{max-width:100%}
 }
 @media (max-width:820px){
   .side-nav{display:none}
+  .arch-grid{grid-template-columns:1fr}
   .section{padding:72px 20px}
   #home{padding-top:96px}
   #lang-panel{right:16px;top:14px}
@@ -955,7 +956,6 @@ img{max-width:100%}
 
         <div class="section" id="OpenSourceProject">
             <h1>开源项目</h1>
-            <p class="center" style="margin-top:-6px;color:var(--text-3);font-size:13.5px;">点击卡片标题或封面，展开项目详情</p>
             <div class="oss-grid">
                 <article class="oss-card" data-oss="seven" tabindex="0" role="button" aria-label="AI 智能论文查重 — 查看详情">
                     <div class="oss-cover"><img src="img/oss-seven.svg" alt="AI 智能论文查重 封面" /></div>
@@ -1005,9 +1005,8 @@ img{max-width:100%}
 
         <div class="section" id="architecture-gallery">
             <h1 class="center">架构方案</h1>
-            <p class="center" style="margin-top:-6px;color:var(--text-3);font-size:13.5px;">点击方案查看完整架构图与说明</p>
             <div class="arch-grid">
-                <article class="arch-card" data-arch="ai" style="--ac:#e879a6" tabindex="0" role="button" aria-label="多模态 AI 平台 — 查看方案">
+                <article class="arch-card" data-arch="ai" tabindex="0" role="button" aria-label="多模态 AI 平台 — 查看方案">
                     <div class="arch-cover"><img src="img/arch-ai-platform.svg" alt="多模态 AI 平台 架构图" /></div>
                     <div class="arch-body">
                         <h3>多模态 AI 平台<span class="arch-year">2026</span></h3>
@@ -1015,7 +1014,7 @@ img{max-width:100%}
                         <span class="arch-expand">查看方案 →</span>
                     </div>
                 </article>
-                <article class="arch-card" data-arch="search" style="--ac:#34d399" tabindex="0" role="button" aria-label="搜索推荐平台 — 查看方案">
+                <article class="arch-card" data-arch="search" tabindex="0" role="button" aria-label="搜索推荐平台 — 查看方案">
                     <div class="arch-cover"><img src="img/arch-search-rec.svg" alt="搜索推荐策略与模型基础建设 架构图" /></div>
                     <div class="arch-body">
                         <h3>搜索推荐平台<span class="arch-year">策略 · 模型</span></h3>
@@ -1023,7 +1022,7 @@ img{max-width:100%}
                         <span class="arch-expand">查看方案 →</span>
                     </div>
                 </article>
-                <article class="arch-card" data-arch="dist" style="--ac:#38bdf8" tabindex="0" role="button" aria-label="分布式架构案例 — 查看方案">
+                <article class="arch-card" data-arch="dist" tabindex="0" role="button" aria-label="分布式架构案例 — 查看方案">
                     <div class="arch-cover"><img src="img/arch-dist.svg" alt="分布式架构案例 架构图" /></div>
                     <div class="arch-body">
                         <h3>分布式架构案例<span class="arch-year">2019</span></h3>
@@ -1031,7 +1030,7 @@ img{max-width:100%}
                         <span class="arch-expand">查看方案 →</span>
                     </div>
                 </article>
-                <article class="arch-card" data-arch="phys" style="--ac:#f5b451" tabindex="0" role="button" aria-label="高可用物理拓扑 — 查看方案">
+                <article class="arch-card" data-arch="phys" tabindex="0" role="button" aria-label="高可用物理拓扑 — 查看方案">
                     <div class="arch-cover"><img src="img/arch-phys.svg" alt="高可用物理拓扑 架构图" /></div>
                     <div class="arch-body">
                         <h3>高可用物理拓扑<span class="arch-year">2022</span></h3>
@@ -1039,7 +1038,7 @@ img{max-width:100%}
                         <span class="arch-expand">查看方案 →</span>
                     </div>
                 </article>
-                <article class="arch-card" data-arch="logic" style="--ac:#818cf8" tabindex="0" role="button" aria-label="高可用逻辑拓扑 — 查看方案">
+                <article class="arch-card" data-arch="logic" tabindex="0" role="button" aria-label="高可用逻辑拓扑 — 查看方案">
                     <div class="arch-cover"><img src="img/arch-logic.svg" alt="高可用逻辑拓扑 架构图" /></div>
                     <div class="arch-body">
                         <h3>高可用逻辑拓扑<span class="arch-year">2022</span></h3>
@@ -1379,7 +1378,7 @@ img{max-width:100%}
           var chips=d.chips.map(function(c){return '<span class="chip">'+esc(c)+'</span>';}).join('');
           return ''+
             '<div class="arch-figure oss-reveal"><img class="arch-zoom" src="'+d.img+'" alt="'+esc(d.title)+' 架构图" /><span class="arch-figure__hint">点击放大 ⤢</span></div>'+
-            '<div class="oss-head"><h2 id="ossModalTitle">'+esc(d.title)+'<span class="arch-yr" style="color:'+d.ac+';border-color:'+d.ac+'">'+esc(d.year)+'</span></h2><p>'+esc(d.desc)+'</p></div>'+
+            '<div class="oss-head"><h2 id="ossModalTitle">'+esc(d.title)+'<span class="arch-yr">'+esc(d.year)+'</span></h2><p>'+esc(d.desc)+'</p></div>'+
             '<div class="oss-content">'+
               '<div class="oss-reveal"><p class="oss-sec-label">分层 / 要点</p><ul class="oss-hl">'+pts+'</ul></div>'+
               '<div class="oss-reveal"><p class="oss-sec-label">关键技术</p><div class="oss-chips">'+chips+'</div></div>'+
