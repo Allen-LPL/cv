@@ -1,0 +1,70 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 410" font-family="ui-sans-serif,system-ui,'Segoe UI',Roboto,sans-serif" role="img" aria-label="High-availability logical topology diagram">
+  <defs>
+    <linearGradient id="l-bg" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#12142a"/><stop offset="1" stop-color="#0a0f1b"/></linearGradient>
+    <pattern id="l-grid" width="40" height="40" patternUnits="userSpaceOnUse"><path d="M40 0H0V40" fill="none" stroke="#ffffff" stroke-opacity=".04"/></pattern>
+    <marker id="l-ar" markerWidth="9" markerHeight="9" refX="6" refY="3" orient="auto"><path d="M0 0 L6 3 L0 6 Z" fill="#5b6091"/></marker>
+  </defs>
+  <rect width="1000" height="410" fill="url(#l-bg)"/>
+  <rect width="1000" height="410" fill="url(#l-grid)"/>
+  <text x="500" y="36" text-anchor="middle" font-size="22" font-weight="700" fill="#f4f8fd">HA Logical Topology · 2022</text>
+  <text x="500" y="58" text-anchor="middle" font-size="12.5" fill="#9fb0c3">Traffic governance · canary · CDC sync · observability · DevOps</text>
+
+  <!-- security layer -->
+  <g>
+    <rect x="120" y="78" width="700" height="56" rx="12" fill="#818cf8" fill-opacity=".05" stroke="#818cf8" stroke-opacity=".3"/>
+    <rect x="132" y="70" width="140" height="20" rx="10" fill="#12142a" stroke="#818cf8" stroke-opacity=".45"/><text x="202" y="84" text-anchor="middle" font-size="11" font-weight="600" fill="#a5b4fc">Network / Security</text>
+    <g font-size="12.5" fill="#e6edf5" text-anchor="middle">
+      <rect x="130" y="96" width="222" height="32" rx="8" fill="#12142a" stroke="#ffffff" stroke-opacity=".12"/><text x="241" y="117">Security Zone · Isolation</text>
+      <rect x="362" y="96" width="216" height="32" rx="8" fill="#12142a" stroke="#ffffff" stroke-opacity=".12"/><text x="470" y="117">WAF Policy</text>
+      <rect x="588" y="96" width="222" height="32" rx="8" fill="#12142a" stroke="#ffffff" stroke-opacity=".12"/><text x="699" y="117">DDoS / CC Protection</text>
+    </g>
+  </g>
+  <line x1="470" y1="134" x2="470" y2="148" stroke="#5b6091" stroke-width="1.6" marker-end="url(#l-ar)"/>
+
+  <!-- gateway -->
+  <g>
+    <rect x="120" y="152" width="700" height="54" rx="12" fill="#818cf8" fill-opacity=".05" stroke="#818cf8" stroke-opacity=".3"/>
+    <rect x="132" y="144" width="140" height="20" rx="10" fill="#12142a" stroke="#818cf8" stroke-opacity=".45"/><text x="202" y="158" text-anchor="middle" font-size="11" font-weight="600" fill="#a5b4fc">Proxy / Gateway</text>
+    <g font-size="12.5" fill="#e6edf5" text-anchor="middle">
+      <rect x="130" y="168" width="340" height="32" rx="8" fill="#12142a" stroke="#ffffff" stroke-opacity=".12"/><text x="300" y="189">OpenResty Canary / Rolling</text>
+      <rect x="480" y="168" width="330" height="32" rx="8" fill="#12142a" stroke="#ffffff" stroke-opacity=".12"/><text x="645" y="189">Rate-limit · Traffic Gov</text>
+    </g>
+  </g>
+  <line x1="470" y1="206" x2="470" y2="220" stroke="#5b6091" stroke-width="1.6" marker-end="url(#l-ar)"/>
+
+  <!-- business -->
+  <g>
+    <rect x="120" y="224" width="700" height="54" rx="12" fill="#818cf8" fill-opacity=".05" stroke="#818cf8" stroke-opacity=".3"/>
+    <rect x="132" y="216" width="150" height="20" rx="10" fill="#12142a" stroke="#818cf8" stroke-opacity=".45"/><text x="207" y="230" text-anchor="middle" font-size="11" font-weight="600" fill="#a5b4fc">Business · WEB Zone</text>
+    <g font-size="12.5" fill="#e6edf5" text-anchor="middle">
+      <rect x="130" y="240" width="222" height="32" rx="8" fill="#12142a" stroke="#ffffff" stroke-opacity=".12"/><text x="241" y="261">User Service</text>
+      <rect x="362" y="240" width="216" height="32" rx="8" fill="#12142a" stroke="#ffffff" stroke-opacity=".12"/><text x="470" y="261">Trade Service</text>
+      <rect x="588" y="240" width="222" height="32" rx="8" fill="#12142a" stroke="#ffffff" stroke-opacity=".12"/><text x="699" y="261">Script / Cron Service</text>
+    </g>
+  </g>
+  <line x1="470" y1="278" x2="470" y2="292" stroke="#5b6091" stroke-width="1.6" marker-end="url(#l-ar)"/>
+
+  <!-- data -->
+  <g>
+    <rect x="120" y="296" width="700" height="56" rx="12" fill="#818cf8" fill-opacity=".05" stroke="#818cf8" stroke-opacity=".3"/>
+    <rect x="132" y="288" width="120" height="20" rx="10" fill="#12142a" stroke="#818cf8" stroke-opacity=".45"/><text x="192" y="302" text-anchor="middle" font-size="11" font-weight="600" fill="#a5b4fc">Data · Sync</text>
+    <g font-size="12" fill="#e6edf5" text-anchor="middle">
+      <rect x="130" y="312" width="222" height="34" rx="8" fill="#12142a" stroke="#ffffff" stroke-opacity=".12"/><text x="241" y="333">MySQL Primary-Replica</text>
+      <rect x="362" y="312" width="216" height="34" rx="8" fill="#12142a" stroke="#ffffff" stroke-opacity=".12"/><text x="470" y="333">Redis Cache</text>
+      <rect x="588" y="312" width="222" height="34" rx="8" fill="#141a33" stroke="#818cf8" stroke-opacity=".3"/><text x="699" y="329">Canal Binlog</text><text x="699" y="342" font-size="8.5" fill="#aab0d8">CDC → Elasticsearch</text>
+    </g>
+  </g>
+
+  <!-- right rail: observability / devops -->
+  <g>
+    <rect x="836" y="78" width="146" height="274" rx="12" fill="#12142a" stroke="#818cf8" stroke-opacity=".32"/>
+    <text x="909" y="102" text-anchor="middle" font-size="11" font-weight="600" fill="#a5b4fc">Observability / DevOps</text>
+    <g font-size="10.5" fill="#dfe3f7" text-anchor="middle">
+      <rect x="848" y="116" width="122" height="42" rx="8" fill="#171a33" stroke="#818cf8" stroke-opacity=".26"/><text x="909" y="135">Zabbix / Grafana</text><text x="909" y="150" font-size="9" fill="#aab0d8">metrics</text>
+      <rect x="848" y="168" width="122" height="42" rx="8" fill="#171a33" stroke="#818cf8" stroke-opacity=".26"/><text x="909" y="187">ES Log Search</text><text x="909" y="202" font-size="9" fill="#aab0d8">full-link logs</text>
+      <rect x="848" y="220" width="122" height="42" rx="8" fill="#171a33" stroke="#818cf8" stroke-opacity=".26"/><text x="909" y="239">GitLab CI/CD</text><text x="909" y="254" font-size="9" fill="#aab0d8">auto release</text>
+      <rect x="848" y="272" width="122" height="42" rx="8" fill="#171a33" stroke="#818cf8" stroke-opacity=".26"/><text x="909" y="291">SQL Audit · CMDB</text><text x="909" y="306" font-size="9" fill="#aab0d8">security / config</text>
+    </g>
+  </g>
+  <path d="M820 106 H828 q8 0 8 12 V195" fill="none" stroke="#454a7a" stroke-width="1.3" stroke-dasharray="4 5" marker-end="url(#l-ar)"/>
+</svg>

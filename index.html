@@ -339,21 +339,155 @@ img{max-width:100%}
 
 /* -------- lightbox -------- */
 .mask{
-  position:fixed;inset:0;z-index:130;display:none;
-  background:rgba(6,10,18,.86);backdrop-filter:blur(4px);cursor:zoom-out;
+  position:fixed;inset:0;z-index:160;display:none;
+  background:rgba(6,10,18,.9);backdrop-filter:blur(6px);cursor:zoom-out;
 }
 .mask>img{position:fixed;right:20px;top:20px;width:46px;cursor:pointer;opacity:.8}
 .mask>img:hover{opacity:1}
 .bigimg{
-  position:fixed;inset:0;margin:auto;display:none;z-index:131;
-  max-width:90%;max-height:88%;width:auto;height:auto;border-radius:10px;
-  border:1px solid var(--border-hi);box-shadow:0 30px 80px rgba(0,0,0,.6);background:#fff;
+  position:fixed;inset:0;margin:auto;display:none;z-index:161;
+  max-width:94%;max-height:90%;width:auto;height:auto;border-radius:10px;
+  border:1px solid var(--border-hi);box-shadow:0 30px 80px rgba(0,0,0,.6);background:#0c1320;
 }
 
 /* neutralise leftover inline teal (#0d9488) from old theme -> unified accent */
 [style*="0d9488"]{color:var(--accent)!important}
 
 @keyframes fadeRise{from{opacity:0;transform:translateY(12px)}to{opacity:1;transform:none}}
+
+/* ============================================================
+   2026 additions — related-company group · detail links ·
+   open-source cards + modal (motion-forward, theme-matched)
+   ============================================================ */
+
+/* -------- related companies group (experience timeline) -------- */
+.tl-group{
+  position:relative;margin:16px -10px 14px;padding:26px 10px 6px;
+  border:1px dashed rgba(245,180,81,.30);border-radius:16px;
+  background:rgba(245,180,81,.035);
+}
+.tl-group::before{
+  content:attr(data-label);position:absolute;top:-11px;left:18px;
+  padding:3px 11px;border-radius:999px;font-size:11px;font-weight:600;letter-spacing:.3px;
+  color:var(--amber);background:var(--bg-1);border:1px solid rgba(245,180,81,.30);
+}
+.tl-group .timeline-card:last-child{margin-bottom:2px}
+.detail-affil{
+  display:inline-block;margin:-8px 0 16px;padding:5px 12px;border-radius:8px;
+  font-size:12px;font-weight:500;color:var(--amber);
+  background:rgba(245,180,81,.10);border:1px solid rgba(245,180,81,.22);
+}
+
+/* -------- detail / project link buttons -------- */
+.detail-links{display:flex;flex-wrap:wrap;gap:10px;margin:0 0 18px}
+.btn-link{
+  display:inline-flex;align-items:center;gap:7px;padding:9px 15px;border-radius:10px;
+  font-size:12.5px;font-weight:600;letter-spacing:.2px;
+  color:var(--text);background:var(--surface-hi);border:1px solid var(--border-hi);
+  transition:transform .22s ease,border-color .22s ease,background .22s ease,color .22s ease;
+}
+.btn-link:hover{transform:translateY(-2px);color:#fff;border-color:var(--accent-line);background:var(--accent-soft)}
+.btn-link svg{width:14px;height:14px;flex:0 0 14px}
+.btn-link.primary{color:#06121f;background:linear-gradient(180deg,#7dd3fc,var(--accent));border-color:transparent}
+.btn-link.primary:hover{color:#06121f;box-shadow:0 10px 22px rgba(56,189,248,.32)}
+
+/* -------- open-source: redesigned clickable cards -------- */
+.oss-grid{grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:22px;perspective:1200px}
+.oss-card{
+  position:relative;gap:0;padding:0;overflow:hidden;cursor:pointer;
+  align-items:stretch;transform-style:preserve-3d;will-change:transform;
+  transition:transform .32s cubic-bezier(.22,1,.36,1),border-color .3s ease,box-shadow .3s ease;
+}
+.oss-card:hover{border-color:var(--border-hi);box-shadow:0 26px 54px rgba(2,6,16,.55),0 0 0 1px var(--accent-soft)}
+.oss-card:focus-visible{outline:2px solid var(--accent);outline-offset:3px}
+.oss-cover{position:relative;width:100%;aspect-ratio:16/7.4;overflow:hidden;border-bottom:1px solid var(--border);background:var(--bg-1)}
+.oss-cover img{width:100%;height:100%;object-fit:cover;display:block;border:0;border-radius:0;padding:0;background:none;
+  transition:transform .55s cubic-bezier(.22,1,.36,1)}
+.oss-card:hover .oss-cover img{transform:scale(1.06)}
+.oss-cover::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,transparent 52%,rgba(11,17,30,.55))}
+.oss-body{padding:17px 22px 20px;display:flex;flex-direction:column;gap:8px}
+.oss-body h2{margin:0;font-size:17px;font-weight:650}
+.oss-body h2 a{color:#eef4fb}
+.oss-body h2 a:hover{color:var(--accent)}
+.oss-tagline{margin:0;font-size:13px;color:var(--text-2);line-height:1.6}
+.oss-expand{margin-top:2px;font-size:12.5px;font-weight:600;color:var(--accent);display:inline-flex;align-items:center;gap:6px;transition:gap .25s ease}
+.oss-card:hover .oss-expand{gap:11px}
+
+/* -------- open-source modal -------- */
+.oss-modal{position:fixed;inset:0;z-index:140;display:none}
+.oss-modal.open{display:block}
+.oss-modal__scrim{position:absolute;inset:0;background:rgba(5,9,17,.72);
+  backdrop-filter:blur(7px);-webkit-backdrop-filter:blur(7px);opacity:0;transition:opacity .28s ease}
+.oss-modal.show .oss-modal__scrim{opacity:1}
+.oss-modal__dialog{
+  position:absolute;left:50%;top:50%;width:min(760px,92vw);max-height:88vh;
+  border-radius:20px;overflow:hidden;border:1px solid var(--border-hi);
+  background:linear-gradient(180deg,#111a2b,#0c1320);box-shadow:0 40px 100px rgba(2,6,16,.7);
+  transform:translate(-50%,-50%);opacity:0;will-change:transform,opacity;
+}
+.oss-modal__wrap{max-height:88vh;overflow-y:auto;overflow-x:hidden}
+.oss-modal__close{
+  position:absolute;right:14px;top:14px;z-index:4;width:38px;height:38px;border-radius:50%;
+  display:flex;align-items:center;justify-content:center;cursor:pointer;font-size:22px;line-height:1;
+  color:var(--text);background:rgba(12,18,30,.6);border:1px solid var(--border-hi);
+  backdrop-filter:blur(6px);transition:all .22s ease;
+}
+.oss-modal__close:hover{color:#fff;border-color:var(--accent-line);transform:rotate(90deg)}
+.oss-hero{position:relative;aspect-ratio:16/7.4;overflow:hidden;border-bottom:1px solid var(--border);background:var(--bg-1)}
+.oss-hero img{width:100%;height:100%;object-fit:cover;display:block}
+.oss-hero::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,transparent 58%,rgba(12,19,32,.55))}
+.oss-head{padding:18px 26px 2px}
+.oss-head h2{margin:0;font-size:23px;font-weight:750;color:#f4f8fd;letter-spacing:-.4px}
+.oss-head p{margin:6px 0 0;font-size:13.5px;color:var(--text-2)}
+.oss-content{padding:18px 26px 28px;display:flex;flex-direction:column;gap:20px}
+.oss-stats{display:flex;flex-wrap:wrap;gap:12px}
+.oss-stat{flex:1 1 130px;min-width:120px;padding:14px 16px;border-radius:12px;background:var(--surface);border:1px solid var(--border)}
+.oss-stat b{display:block;font-size:21px;font-weight:750;color:var(--accent);letter-spacing:-.5px;line-height:1.1}
+.oss-stat span{font-size:11.5px;color:var(--text-3);display:block;margin-top:3px}
+.oss-sec-label{font-size:11px;font-weight:600;text-transform:uppercase;letter-spacing:.7px;color:var(--text-3);margin:0 0 -8px}
+.oss-sec-desc{margin:0;font-size:14px;color:var(--text);line-height:1.85}
+.oss-chips{display:flex;flex-wrap:wrap;gap:8px}
+.oss-hl{margin:0;padding:0;list-style:none;display:flex;flex-direction:column;gap:9px}
+.oss-hl li{position:relative;padding-left:20px;font-size:13.5px;color:var(--text-2);line-height:1.7}
+.oss-hl li::before{content:"";position:absolute;left:2px;top:9px;width:6px;height:6px;border-radius:50%;background:var(--accent)}
+
+/* modal motion: staggered reveal of blocks */
+.oss-modal.show .oss-reveal{animation:ossReveal .5s cubic-bezier(.22,1,.36,1) both}
+@keyframes ossReveal{from{opacity:0;transform:translateY(16px)}to{opacity:1;transform:none}}
+
+/* -------- architecture solutions (redesigned, clickable) -------- */
+.arch-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:22px;margin-top:8px;perspective:1200px}
+.arch-card{
+  position:relative;overflow:hidden;cursor:pointer;border-radius:var(--radius);
+  background:linear-gradient(180deg,var(--surface),var(--surface-2));
+  border:1px solid var(--border);box-shadow:var(--shadow);
+  transform-style:preserve-3d;will-change:transform,opacity;
+  transition:transform .32s cubic-bezier(.22,1,.36,1),border-color .3s ease,box-shadow .3s ease,opacity .6s ease;
+}
+.arch-card.reveal-init{opacity:0;transform:translateY(26px)}
+.arch-card:hover{border-color:var(--border-hi);box-shadow:0 26px 54px rgba(2,6,16,.55),0 0 0 1px var(--accent-soft)}
+.arch-card:focus-visible{outline:2px solid var(--ac,var(--accent));outline-offset:3px}
+.arch-card::before{content:"";position:absolute;top:0;left:0;right:0;height:3px;z-index:2;background:linear-gradient(90deg,var(--ac,var(--accent)),transparent 72%)}
+.arch-cover{position:relative;width:100%;aspect-ratio:16/10;overflow:hidden;border-bottom:1px solid var(--border);background:var(--bg-1)}
+.arch-cover img{width:100%;height:100%;object-fit:cover;object-position:top center;display:block;border:0;border-radius:0;padding:0;background:#0c1320;transition:transform .55s cubic-bezier(.22,1,.36,1)}
+.arch-card:hover .arch-cover img{transform:scale(1.05)}
+.arch-cover::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,transparent 48%,rgba(11,17,30,.6))}
+.arch-body{padding:16px 22px 20px;display:flex;flex-direction:column;gap:6px}
+.arch-body h3{margin:0;font-size:17px;font-weight:650;color:#eef4fb;display:flex;align-items:center;gap:10px}
+.arch-year{font-size:11px;font-weight:600;color:var(--ac,var(--accent));border:1px solid var(--ac,var(--accent));border-radius:999px;padding:2px 9px;opacity:.85}
+.arch-body p{margin:0;font-size:13px;color:var(--text-2);line-height:1.6}
+.arch-expand{margin-top:2px;font-size:12.5px;font-weight:600;color:var(--ac,var(--accent));display:inline-flex;align-items:center;gap:6px;transition:gap .25s ease}
+.arch-card:hover .arch-expand{gap:11px}
+/* architecture modal figure */
+.arch-figure{position:relative;background:var(--bg-1);border-bottom:1px solid var(--border);padding:14px}
+.arch-figure img{width:100%;height:auto;max-height:56vh;object-fit:contain;display:block;cursor:zoom-in;border-radius:8px}
+.arch-figure__hint{position:absolute;right:22px;bottom:22px;font-size:11px;color:var(--text-2);background:rgba(12,18,30,.72);border:1px solid var(--border);border-radius:999px;padding:4px 10px;pointer-events:none}
+.oss-head .arch-yr{font-size:12px;font-weight:600;color:var(--accent);border:1px solid var(--accent-line);border-radius:999px;padding:2px 9px;margin-left:8px;vertical-align:middle}
+
+@media (prefers-reduced-motion:reduce){
+  .oss-card,.oss-card .oss-cover img,.oss-modal__dialog,.oss-modal.show .oss-reveal,
+  .arch-card,.arch-card .arch-cover img{transition:none!important;animation:none!important}
+}
 
 /* ============================================================
    Responsive
@@ -383,9 +517,15 @@ img{max-width:100%}
   body{font-size:15px}
   #avatar{height:clamp(200px,42vh,280px);width:auto}
   #title{letter-spacing:-1px}
-  .tech-card,.case-card,.oss-card{padding:20px}
+  .tech-card,.case-card{padding:20px}
+  .oss-body{padding:16px 18px 18px}
   .article-item{flex-direction:column;align-items:flex-start;gap:8px}
   .article-arrow{display:none}
+  .oss-content{padding:18px 18px 24px}
+  .oss-head{padding:15px 18px 2px}
+  .oss-head h2{font-size:20px}
+  .arch-figure img{max-height:48vh}
+  .detail-links{gap:8px}
 }
 
     </style>
@@ -511,6 +651,11 @@ img{max-width:100%}
             <div class="bigbox">
                 <div class="timeline-layout">
                     <div class="timeline-list" id="experience-timeline">
+                        <div class="timeline-card" data-detail="exp-0">
+                            <span class="timeline-time">2025.12 - Present</span>
+                            <h3>Zhejiang Yishu Times Tech</h3>
+                            <p class="timeline-role">Technical Director · Emergency AI + HW/SW Integration</p>
+                        </div>
                         <div class="timeline-card" data-detail="exp-1">
                             <span class="timeline-time">2023.11 - 2025.09</span>
                             <h3>Hangzhou Weilan Sports Tech</h3>
@@ -521,23 +666,42 @@ img{max-width:100%}
                             <h3>Shanghai Lianyin Network Group</h3>
                             <p class="timeline-role">Full Stack Architect · R&D/Ops/Big Data</p>
                         </div>
-                        <div class="timeline-card" data-detail="exp-3">
-                            <span class="timeline-time">2020.06 - 2022.06</span>
-                            <h3>Hangzhou Taoyou Tech</h3>
-                            <p class="timeline-role">Technical Director · Golang/Java Multi-stack</p>
-                        </div>
-                        <div class="timeline-card" data-detail="exp-4">
-                            <span class="timeline-time">2018.11 - 2020.06</span>
-                            <h3>Hangzhou Tianzuan Network</h3>
-                            <p class="timeline-role">Tech Lead · Tiaotiaozhu Series</p>
-                        </div>
-                        <div class="timeline-card" data-detail="exp-5">
-                            <span class="timeline-time">2015.08 - 2018.11</span>
-                            <h3>Horgos Tuomei Entertainment</h3>
-                            <p class="timeline-role">PHP R&D Engineer · Earning/Chess/Gem Planet</p>
+                        <div class="tl-group" data-label="Affiliated · Same Beneficial Owner">
+                            <div class="timeline-card" data-detail="exp-3">
+                                <span class="timeline-time">2020.06 - 2022.06</span>
+                                <h3>Hangzhou Taoyou Tech</h3>
+                                <p class="timeline-role">Technical Director · Golang/Java Multi-stack</p>
+                            </div>
+                            <div class="timeline-card" data-detail="exp-4">
+                                <span class="timeline-time">2018.11 - 2020.06</span>
+                                <h3>Hangzhou Tianzuan Network</h3>
+                                <p class="timeline-role">Tech Lead · Tiaotiaozhu Series</p>
+                            </div>
+                            <div class="timeline-card" data-detail="exp-5">
+                                <span class="timeline-time">2015.08 - 2018.11</span>
+                                <h3>Horgos Tuomei Entertainment</h3>
+                                <p class="timeline-role">PHP R&D Engineer · Earning/Chess/Gem Planet</p>
+                            </div>
                         </div>
                     </div>
                     <div class="timeline-detail" id="experience-detail">
+                        <div class="detail-panel" id="exp-0">
+                            <h2>Zhejiang Yishu Times Tech · Technical Director</h2>
+                            <p class="detail-meta">2025.12 - Present · Team 11 (HW/Android/Backend/PM/Video) · Emergency AI Training</p>
+                            <p class="detail-summary">Led the medical-emergency AI training product system, connecting Android tablets with CPR manikins / AED via multi-protocol, iterating products from basic to multi-modal AI, and delivering two AI algorithm lines: video scoring and time-series forecasting.</p>
+                            <ul>
+                                <li>HW/SW integration: Android tablets talk to multi-brand CPR manikins & AED simulators over Bluetooth / UART (RS485/RS232/TTL) / Socket, collecting compression depth/rate/recoil and ventilation in real time.</li>
+                                <li>CPR training/exam system iterated to an AI version: added speech recognition, action recognition and AI digital-human dialogue, covering the full 9-step rescue flow with training/exam/level-up/competition modes (14 levels).</li>
+                                <li>AI Rescuer: LLM SSE streaming dialogue + OpenGL digital human + iFlytek/Tencent Cloud wake-up & ASR for multi-modal first-aid Q&A; Heimlich system collects back-blow/thrust data via a Bluetooth manikin.</li>
+                                <li>120 pre-hospital multi-modal scoring: YOLOv8 + ByteTrack multi-person tracking & pose/action recognition, FunASR ASR + VAD + speaker diarization, unified video/audio/sensor timeline + rule-engine scoring.</li>
+                                <li>Beijing Blood Bank supply forecasting: LSTM+XGBoost ensemble / Conv1D-LSTM / standalone XGBoost, calendar + weather feature engineering and multi-window rolling backtest; patent draft filed.</li>
+                            </ul>
+                            <div class="detail-highlight">
+                                <strong>Highlights</strong>
+                                <p>Led an 11-person cross-functional team, landing Android HW/SW integration and multi-modal AI (dialogue/vision/speech/time-series) on the medical-emergency training frontline, running legacy maintenance and 0→1 new products in parallel.</p>
+                                <span>Keywords: Multi-modal AI · HW/SW Integration · Medical Emergency</span>
+                            </div>
+                        </div>
                         <div class="detail-panel" id="exp-1">
                             <h2>Hangzhou Weilan Sports Tech · Technical Director</h2>
                             <p class="detail-meta">2023.11 - 2025.09 · Team 10-20 · Sports/Research Check/Cross-border
@@ -594,6 +758,7 @@ img{max-width:100%}
                         <div class="detail-panel" id="exp-3">
                             <h2>Hangzhou Taoyou Tech · Technical Director</h2>
                             <p class="detail-meta">2020.06 - 2022.06 · Team 30-48 · Golang/Java Multi-stack</p>
+                            <p class="detail-affil">Affiliated · same beneficial owner as Tianzuan & Tuomei (separate entities)</p>
                             <p class="detail-summary">Responsible for architecture and delivery of 50W DAU toC platform
                                 and multiple e-commerce projects, driving systemic migration from PHP to Java/Golang and
                                 automated O&M system.</p>
@@ -619,6 +784,7 @@ img{max-width:100%}
                         <div class="detail-panel" id="exp-4">
                             <h2>Hangzhou Tianzuan Network · Tech Lead</h2>
                             <p class="detail-meta">2018.11 - 2020.06 · Team 5-8 · Tiaotiaozhu Series</p>
+                            <p class="detail-affil">Affiliated · same beneficial owner as Taoyou & Tuomei (separate entities)</p>
                             <p class="detail-summary">Led small team to complete Tiaotiaozhu PC/H5 0-1 and subsequent
                                 iterations, focusing on hybrid architecture, low-cost expansion, and high-frequency
                                 activity delivery.</p>
@@ -645,6 +811,7 @@ img{max-width:100%}
                         <div class="detail-panel" id="exp-5">
                             <h2>Horgos Tuomei Entertainment · PHP R&D Engineer</h2>
                             <p class="detail-meta">2015.08 - 2018.11 · Earning/Gem Planet/Chess</p>
+                            <p class="detail-affil">Affiliated · same beneficial owner as Taoyou & Tianzuan (separate entities)</p>
                             <p class="detail-summary">Responsible for backend dev and maintenance of Chess, Mining, Web
                                 Games business lines, independently completing activity gameplay to high-concurrency
                                 revenue calculation.</p>
@@ -677,6 +844,16 @@ img{max-width:100%}
             <div class="bigbox">
                 <div class="timeline-layout">
                     <div class="timeline-list" id="project-timeline">
+                        <div class="timeline-card" data-detail="proj-120">
+                            <span class="timeline-time">2025 - Present</span>
+                            <h3>120 Pre-hospital Multi-modal Scoring</h3>
+                            <p class="timeline-role">Technical Director · Multi-modal AI Video Scoring</p>
+                        </div>
+                        <div class="timeline-card" data-detail="proj-blood">
+                            <span class="timeline-time">2025 - Present</span>
+                            <h3>Blood Supply Forecasting</h3>
+                            <p class="timeline-role">Technical Director · Time-series (Algo + Full Stack)</p>
+                        </div>
                         <div class="timeline-card" data-detail="proj-1">
                             <span class="timeline-time">2024 - 2025</span>
                             <h3>Moment Sports · MiniApp/H5/APP</h3>
@@ -699,6 +876,47 @@ img{max-width:100%}
                         </div>
                     </div>
                     <div class="timeline-detail" id="project-detail">
+                        <div class="detail-panel" id="proj-120">
+                            <h2>120 Pre-hospital First Aid · Multi-modal AI Scoring</h2>
+                            <p class="detail-meta">Technical Director · Python · FastAPI · YOLOv8 · ByteTrack · FunASR · React · Docker(GPU)</p>
+                            <div class="detail-links">
+                                <a class="btn-link" href="https://github.com/Allen-LPL/Emergency-AI-Examiner" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2A10 10 0 0 0 2 12c0 4.42 2.87 8.17 6.84 9.5.5.09.66-.22.66-.48 0-.24-.01-.87-.01-1.7-2.78.6-3.37-1.34-3.37-1.34-.45-1.16-1.11-1.47-1.11-1.47-.91-.62.07-.6.07-.6 1 .07 1.53 1.03 1.53 1.03.9 1.53 2.34 1.09 2.91.83.09-.65.35-1.09.63-1.34-2.22-.25-4.55-1.11-4.55-4.94 0-1.09.39-1.98 1.03-2.68-.1-.25-.45-1.27.1-2.65 0 0 .84-.27 2.75 1.02a9.6 9.6 0 0 1 5 0c1.91-1.29 2.75-1.02 2.75-1.02.55 1.38.2 2.4.1 2.65.64.7 1.03 1.59 1.03 2.68 0 3.84-2.34 4.68-4.57 4.93.36.31.68.92.68 1.85 0 1.34-.01 2.42-.01 2.74 0 .27.16.58.67.48A10 10 0 0 0 12 2Z"/></svg> Emergency-AI-Examiner</a>
+                            </div>
+                            <p class="detail-summary">Upload a three-person first-aid exam video (with audio) to auto-parse actions and commands, producing a 100-point score with improvement suggestions; supports CPU / GPU container deployment.</p>
+                            <ul>
+                                <li>Vision: YOLOv8 person detection + ByteTrack multi-person tracking + pose/action recognition, judging whether the three-person coordinated rescue is standard.</li>
+                                <li>Audio: FunASR Chinese ASR + Voice Activity Detection (VAD) + speaker diarization, matching command/call-for-help keywords.</li>
+                                <li>Multi-modal fusion: video + audio + sensor events aligned on one timeline, rule-engine 6-stage 100-point scoring.</li>
+                                <li>Report: HTML/PDF with per-item scores, radar chart, deduction reasons, timeline replay and improvement tips.</li>
+                            </ul>
+                            <div class="detail-highlight">
+                                <strong>Highlights</strong>
+                                <p>Fuses CV (detection/tracking/pose) with speech (ASR/VAD/diarization) on a unified timeline, using a rule engine to produce explainable first-aid scoring reports.</p>
+                                <span>Pitch: Multi-modal Fusion · Explainable Scoring · GPU Deployment</span>
+                            </div>
+                        </div>
+                        <div class="detail-panel" id="proj-blood">
+                            <h2>Beijing Blood Bank Supply Forecasting · Time-series</h2>
+                            <p class="detail-meta">Technical Director · Keras(LSTM) · XGBoost · Conv1D-LSTM · Spring Boot · Vue3 · MySQL</p>
+                            <div class="detail-links">
+                                <a class="btn-link primary" href="http://blood.weilantech.com/" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 3h6v6"/><path d="M10 14 21 3"/><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/></svg> Live Demo</a>
+                                <a class="btn-link" href="https://github.com/Allen-LPL/blood-prediction-algorithm" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2A10 10 0 0 0 2 12c0 4.42 2.87 8.17 6.84 9.5.5.09.66-.22.66-.48 0-.24-.01-.87-.01-1.7-2.78.6-3.37-1.34-3.37-1.34-.45-1.16-1.11-1.47-1.11-1.47-.91-.62.07-.6.07-.6 1 .07 1.53 1.03 1.53 1.03.9 1.53 2.34 1.09 2.91.83.09-.65.35-1.09.63-1.34-2.22-.25-4.55-1.11-4.55-4.94 0-1.09.39-1.98 1.03-2.68-.1-.25-.45-1.27.1-2.65 0 0 .84-.27 2.75 1.02a9.6 9.6 0 0 1 5 0c1.91-1.29 2.75-1.02 2.75-1.02.55 1.38.2 2.4.1 2.65.64.7 1.03 1.59 1.03 2.68 0 3.84-2.34 4.68-4.57 4.93.36.31.68.92.68 1.85 0 1.34-.01 2.42-.01 2.74 0 .27.16.58.67.48A10 10 0 0 0 12 2Z"/></svg> Algorithm</a>
+                                <a class="btn-link" href="https://github.com/Allen-LPL/blood-BN" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2A10 10 0 0 0 2 12c0 4.42 2.87 8.17 6.84 9.5.5.09.66-.22.66-.48 0-.24-.01-.87-.01-1.7-2.78.6-3.37-1.34-3.37-1.34-.45-1.16-1.11-1.47-1.11-1.47-.91-.62.07-.6.07-.6 1 .07 1.53 1.03 1.53 1.03.9 1.53 2.34 1.09 2.91.83.09-.65.35-1.09.63-1.34-2.22-.25-4.55-1.11-4.55-4.94 0-1.09.39-1.98 1.03-2.68-.1-.25-.45-1.27.1-2.65 0 0 .84-.27 2.75 1.02a9.6 9.6 0 0 1 5 0c1.91-1.29 2.75-1.02 2.75-1.02.55 1.38.2 2.4.1 2.65.64.7 1.03 1.59 1.03 2.68 0 3.84-2.34 4.68-4.57 4.93.36.31.68.92.68 1.85 0 1.34-.01 2.42-.01 2.74 0 .27.16.58.67.48A10 10 0 0 0 12 2Z"/></svg> Backend</a>
+                                <a class="btn-link" href="https://github.com/Allen-LPL/blood-three" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2A10 10 0 0 0 2 12c0 4.42 2.87 8.17 6.84 9.5.5.09.66-.22.66-.48 0-.24-.01-.87-.01-1.7-2.78.6-3.37-1.34-3.37-1.34-.45-1.16-1.11-1.47-1.11-1.47-.91-.62.07-.6.07-.6 1 .07 1.53 1.03 1.53 1.03.9 1.53 2.34 1.09 2.91.83.09-.65.35-1.09.63-1.34-2.22-.25-4.55-1.11-4.55-4.94 0-1.09.39-1.98 1.03-2.68-.1-.25-.45-1.27.1-2.65 0 0 .84-.27 2.75 1.02a9.6 9.6 0 0 1 5 0c1.91-1.29 2.75-1.02 2.75-1.02.55 1.38.2 2.4.1 2.65.64.7 1.03 1.59 1.03 2.68 0 3.84-2.34 4.68-4.57 4.93.36.31.68.92.68 1.85 0 1.34-.01 2.42-.01 2.74 0 .27.16.58.67.48A10 10 0 0 0 12 2Z"/></svg> Frontend</a>
+                            </div>
+                            <p class="detail-summary">A blood supply/collection time-series forecasting system (algorithm + full stack), predicting volumes by blood bank / blood type to support collection planning and inventory scheduling.</p>
+                            <ul>
+                                <li>Three parallel models compared: LSTM+XGBoost ensemble (primary), Conv1D-LSTM hybrid, standalone XGBoost.</li>
+                                <li>Feature engineering: calendar + weather features (2015-2026, holidays/workdays/weekends), residual modeling and sample weighting.</li>
+                                <li>Evaluation: multi-window rolling backtest, per-blood-category models; data sources support Excel and MySQL.</li>
+                                <li>Originality: a related patent draft has been filed.</li>
+                            </ul>
+                            <div class="detail-highlight">
+                                <strong>Highlights</strong>
+                                <p>Three parallel time-series models + calendar/weather feature engineering + rolling backtest, turning supply forecasting into an operable collection/inventory decision tool, with a patent draft.</p>
+                                <span>Pitch: Time-series Forecasting · Feature Engineering · Patent</span>
+                            </div>
+                        </div>
                         <div class="detail-panel" id="proj-1">
                             <h2>Moment Sports · WeChat MiniApp / H5 / APP</h2>
                             <p class="detail-meta">Technical Director · Spring Boot · Nacos · Redis · RabbitMQ · DevOps
@@ -728,6 +946,10 @@ img{max-width:100%}
                         <div class="detail-panel" id="proj-2">
                             <h2>PUMC Info Institute · Paper/Image Plagiarism Check</h2>
                             <p class="detail-meta">Technical Director · Spring Boot · Python · Milvus · CLIP/DINOv2</p>
+                            <div class="detail-links">
+                                <a class="btn-link primary" href="https://seven.weilantech.com" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 3h6v6"/><path d="M10 14 21 3"/><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/></svg> Live Demo</a>
+                                <a class="btn-link" href="https://github.com/Allen-LPL/seven-server" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2A10 10 0 0 0 2 12c0 4.42 2.87 8.17 6.84 9.5.5.09.66-.22.66-.48 0-.24-.01-.87-.01-1.7-2.78.6-3.37-1.34-3.37-1.34-.45-1.16-1.11-1.47-1.11-1.47-.91-.62.07-.6.07-.6 1 .07 1.53 1.03 1.53 1.03.9 1.53 2.34 1.09 2.91.83.09-.65.35-1.09.63-1.34-2.22-.25-4.55-1.11-4.55-4.94 0-1.09.39-1.98 1.03-2.68-.1-.25-.45-1.27.1-2.65 0 0 .84-.27 2.75 1.02a9.6 9.6 0 0 1 5 0c1.91-1.29 2.75-1.02 2.75-1.02.55 1.38.2 2.4.1 2.65.64.7 1.03 1.59 1.03 2.68 0 3.84-2.34 4.68-4.57 4.93.36.31.68.92.68 1.85 0 1.34-.01 2.42-.01 2.74 0 .27.16.58.67.48A10 10 0 0 0 12 2Z"/></svg> seven-server</a>
+                            </div>
                             <p class="detail-summary">Multi-modal plagiarism check system for research/gov scenarios,
                                 meeting intranet compliance, massive vector retrieval, and low-cost compute strategies.
                             </p>
@@ -755,6 +977,12 @@ img{max-width:100%}
                             <h2>Mydesign Cross-border E-commerce Independent Site</h2>
                             <p class="detail-meta">Technical Director · Spring Boot · AWS · Elasticsearch · Automated
                                 Ops</p>
+                            <div class="detail-links">
+                                <a class="btn-link primary" href="https://m.mydesign-fashion.com/" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 3h6v6"/><path d="M10 14 21 3"/><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/></svg> Live Demo</a>
+                                <a class="btn-link" href="https://github.com/Allen-LPL/mydesign" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2A10 10 0 0 0 2 12c0 4.42 2.87 8.17 6.84 9.5.5.09.66-.22.66-.48 0-.24-.01-.87-.01-1.7-2.78.6-3.37-1.34-3.37-1.34-.45-1.16-1.11-1.47-1.11-1.47-.91-.62.07-.6.07-.6 1 .07 1.53 1.03 1.53 1.03.9 1.53 2.34 1.09 2.91.83.09-.65.35-1.09.63-1.34-2.22-.25-4.55-1.11-4.55-4.94 0-1.09.39-1.98 1.03-2.68-.1-.25-.45-1.27.1-2.65 0 0 .84-.27 2.75 1.02a9.6 9.6 0 0 1 5 0c1.91-1.29 2.75-1.02 2.75-1.02.55 1.38.2 2.4.1 2.65.64.7 1.03 1.59 1.03 2.68 0 3.84-2.34 4.68-4.57 4.93.36.31.68.92.68 1.85 0 1.34-.01 2.42-.01 2.74 0 .27.16.58.67.48A10 10 0 0 0 12 2Z"/></svg> Backend</a>
+                                <a class="btn-link" href="https://github.com/Allen-LPL/mydesign-frontend" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2A10 10 0 0 0 2 12c0 4.42 2.87 8.17 6.84 9.5.5.09.66-.22.66-.48 0-.24-.01-.87-.01-1.7-2.78.6-3.37-1.34-3.37-1.34-.45-1.16-1.11-1.47-1.11-1.47-.91-.62.07-.6.07-.6 1 .07 1.53 1.03 1.53 1.03.9 1.53 2.34 1.09 2.91.83.09-.65.35-1.09.63-1.34-2.22-.25-4.55-1.11-4.55-4.94 0-1.09.39-1.98 1.03-2.68-.1-.25-.45-1.27.1-2.65 0 0 .84-.27 2.75 1.02a9.6 9.6 0 0 1 5 0c1.91-1.29 2.75-1.02 2.75-1.02.55 1.38.2 2.4.1 2.65.64.7 1.03 1.59 1.03 2.68 0 3.84-2.34 4.68-4.57 4.93.36.31.68.92.68 1.85 0 1.34-.01 2.42-.01 2.74 0 .27.16.58.67.48A10 10 0 0 0 12 2Z"/></svg> Frontend</a>
+                                <a class="btn-link" href="https://github.com/Allen-LPL/mydesign-admin-frontend" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2A10 10 0 0 0 2 12c0 4.42 2.87 8.17 6.84 9.5.5.09.66-.22.66-.48 0-.24-.01-.87-.01-1.7-2.78.6-3.37-1.34-3.37-1.34-.45-1.16-1.11-1.47-1.11-1.47-.91-.62.07-.6.07-.6 1 .07 1.53 1.03 1.53 1.03.9 1.53 2.34 1.09 2.91.83.09-.65.35-1.09.63-1.34-2.22-.25-4.55-1.11-4.55-4.94 0-1.09.39-1.98 1.03-2.68-.1-.25-.45-1.27.1-2.65 0 0 .84-.27 2.75 1.02a9.6 9.6 0 0 1 5 0c1.91-1.29 2.75-1.02 2.75-1.02.55 1.38.2 2.4.1 2.65.64.7 1.03 1.59 1.03 2.68 0 3.84-2.34 4.68-4.57 4.93.36.31.68.92.68 1.85 0 1.34-.01 2.42-.01 2.74 0 .27.16.58.67.48A10 10 0 0 0 12 2Z"/></svg> Admin</a>
+                            </div>
                             <p class="detail-summary">Responsible for cross-border independent site from prototype to
                                 overseas growth, unifying multi-site, exchange rates/taxes, recommendation algos, and
                                 automated O&M.</p>
@@ -810,68 +1038,98 @@ img{max-width:100%}
 
         <div class="section" id="OpenSourceProject">
             <h1>Open Source Projects</h1>
+            <p class="center" style="margin-top:-6px;color:var(--text-3);font-size:13.5px;">Click a card's title or cover to expand the project details</p>
             <div class="oss-grid">
-                <div class="oss-card">
-                    <img src="https://pic1.imgdb.cn/item/691d84ce3203f7be0017d067.png" alt="AI Paper Check"
-                        style="object-fit:contain;padding:4px;" class="smallimg" />
-                    <h2><a href="https://github.com/Allen-LPL/seven-server" target="_blank">AI Paper Plagiarism
-                            Check</a></h2>
-                    <p>Batch upload detection for PDFs and images, supporting intra-doc, strategy, and full-library
-                        checks. Integrates SIFT/SURF for image similarity, implementing 3-level expert review and
-                        auto-generated reports.</p>
-                </div>
-                <div class="oss-card">
-                    <img src="img/captcha-pic.png" alt="Captcha-Pic" />
-                    <h2><a href="https://github.com/Allen-LPL/Captcha-Pic" target="_blank">Captcha-Pic</a></h2>
-                    <p>Golang puzzle captcha, supporting HTML embed and API, used in high-concurrency risk control and
-                        verification scenarios.</p>
-                </div>
-                <div class="oss-card">
-                    <img src="img/docker1.png" alt="Laradock" />
-                    <h2><a href="https://github.com/Allen-LPL/Laradock" target="_blank">Laradock Fork & Dev</a></h2>
-                    <p>Extended OpenResty WAF, VeryNginx, Golang, Python, GitLab Runner, Filebeat images, building a
-                        production-ready container base.</p>
-                </div>
-                <div class="oss-card">
-                    <img src="img/cron.png" alt="webCron" />
-                    <h2><a href="https://github.com/Allen-LPL/webCron" target="_blank">webCron</a></h2>
-                    <p>Golang + Beego based Web crontab, providing permission control, fuzzy task search, termination,
-                        and email notifications.</p>
-                </div>
+                <article class="oss-card" data-oss="seven" tabindex="0" role="button" aria-label="AI Paper Plagiarism Check — view details">
+                    <div class="oss-cover"><img src="img/oss-seven.svg" alt="AI Paper Plagiarism Check cover" /></div>
+                    <div class="oss-body">
+                        <h2><a href="https://seven.weilantech.com" target="_blank" rel="noopener">AI Paper Plagiarism Check</a></h2>
+                        <p class="oss-tagline">Paper & image similarity check for research / universities</p>
+                        <span class="oss-expand">View details →</span>
+                    </div>
+                </article>
+                <article class="oss-card" data-oss="blood" tabindex="0" role="button" aria-label="Blood Supply Forecasting — view details">
+                    <div class="oss-cover"><img src="img/oss-blood.svg" alt="Blood Supply Forecasting cover" /></div>
+                    <div class="oss-body">
+                        <h2><a href="http://blood.weilantech.com/" target="_blank" rel="noopener">Blood Supply Forecasting</a></h2>
+                        <p class="oss-tagline">Blood supply time-series forecasting (algorithm + full stack)</p>
+                        <span class="oss-expand">View details →</span>
+                    </div>
+                </article>
+                <article class="oss-card" data-oss="emergency" tabindex="0" role="button" aria-label="Pre-hospital Multi-modal Scoring — view details">
+                    <div class="oss-cover"><img src="img/oss-emergency.svg" alt="Pre-hospital Multi-modal Scoring cover" /></div>
+                    <div class="oss-body">
+                        <h2><a href="https://github.com/Allen-LPL/Emergency-AI-Examiner" target="_blank" rel="noopener">Pre-hospital Multi-modal Scoring</a></h2>
+                        <p class="oss-tagline">Auto-scoring of 120 three-person first-aid exam videos</p>
+                        <span class="oss-expand">View details →</span>
+                    </div>
+                </article>
+                <article class="oss-card" data-oss="mydesign" tabindex="0" role="button" aria-label="Mydesign Cross-border — view details">
+                    <div class="oss-cover"><img src="img/oss-mydesign.svg" alt="Mydesign Cross-border cover" /></div>
+                    <div class="oss-body">
+                        <h2><a href="https://m.mydesign-fashion.com/" target="_blank" rel="noopener">Mydesign Cross-border</a></h2>
+                        <p class="oss-tagline">Cross-border DTC site, from prototype to overseas growth</p>
+                        <span class="oss-expand">View details →</span>
+                    </div>
+                </article>
             </div>
             <p class="center" style="margin-top:18px;">Visit my <a href="https://github.com/Allen-LPL" target="_blank"
                     class="highlight">GitHub</a> for more</p>
         </div>
 
+        <!-- open-source detail modal -->
+        <div class="oss-modal" id="ossModal" aria-hidden="true">
+            <div class="oss-modal__scrim" data-close></div>
+            <div class="oss-modal__dialog" role="dialog" aria-modal="true" aria-labelledby="ossModalTitle">
+                <button class="oss-modal__close" type="button" aria-label="Close" data-close>&times;</button>
+                <div class="oss-modal__wrap" id="ossModalBody"></div>
+            </div>
+        </div>
+
         <div class="section" id="architecture-gallery">
-            <h1 class="center">Architecture Gallery</h1>
-            <div class="case-gallery">
-                <div class="case-card">
-                    <h3>Distributed Architecture Case (2019)</h3>
-                    <p>Early toC platform distributed evolution, showing service splitting, caching layer, monitoring,
-                        and data links.</p>
-                    <div class="case-media">
-                        <img src="img/architecture.png"
-                            alt="Distributed Architecture Case (2019)" class="smallimg" />
+            <h1 class="center">Architecture Solutions</h1>
+            <p class="center" style="margin-top:-6px;color:var(--text-3);font-size:13.5px;">Click a solution to view the full architecture diagram and notes</p>
+            <div class="arch-grid">
+                <article class="arch-card" data-arch="ai" style="--ac:#e879a6" tabindex="0" role="button" aria-label="Multi-modal AI Platform — view solution">
+                    <div class="arch-cover"><img src="img/arch-ai-platform-en.svg" alt="Multi-modal AI Platform diagram" /></div>
+                    <div class="arch-body">
+                        <h3>Multi-modal AI Platform<span class="arch-year">2026</span></h3>
+                        <p>Vision/speech/dialogue/time-series fused on one timeline + rule-engine scoring + MLOps loop</p>
+                        <span class="arch-expand">View solution →</span>
                     </div>
-                </div>
-                <div class="case-card">
-                    <h3>HA Distributed Physical Topology (2022)</h3>
-                    <p>Multi-region, multi-cluster physical deployment, covering IDC + Cloud hybrid, gateway layer, and
-                        security zones.</p>
-                    <div class="case-media">
-                        <img src="img/physical%20network%20topology.png"
-                            alt="HA Distributed Physical Topology (2022)" class="smallimg" />
+                </article>
+                <article class="arch-card" data-arch="search" style="--ac:#34d399" tabindex="0" role="button" aria-label="Search & Recommendation Platform — view solution">
+                    <div class="arch-cover"><img src="img/arch-search-rec-en.svg" alt="Search & Recommendation platform diagram" /></div>
+                    <div class="arch-body">
+                        <h3>Search &amp; Recommendation<span class="arch-year">Strategy · Model</span></h3>
+                        <p>Multi-recall → coarse → fine → rerank · feature platform + model serving + A/B testing</p>
+                        <span class="arch-expand">View solution →</span>
                     </div>
-                </div>
-                <div class="case-card">
-                    <h3>HA Distributed Logical Topology (2022)</h3>
-                    <p>Logical service view of traffic governance, data sync, observability, and DevOps processes.</p>
-                    <div class="case-media">
-                        <img src="img/logical%20topology.png"
-                            alt="HA Distributed Logical Topology (2022)" class="smallimg" />
+                </article>
+                <article class="arch-card" data-arch="dist" style="--ac:#38bdf8" tabindex="0" role="button" aria-label="Distributed Architecture Case — view solution">
+                    <div class="arch-cover"><img src="img/arch-dist-en.svg" alt="Distributed architecture case diagram" /></div>
+                    <div class="arch-body">
+                        <h3>Distributed Arch Case<span class="arch-year">2019</span></h3>
+                        <p>Early toC distributed evolution: service split, caching, monitoring, data links</p>
+                        <span class="arch-expand">View solution →</span>
                     </div>
-                </div>
+                </article>
+                <article class="arch-card" data-arch="phys" style="--ac:#f5b451" tabindex="0" role="button" aria-label="HA Physical Topology — view solution">
+                    <div class="arch-cover"><img src="img/arch-phys-en.svg" alt="HA physical topology diagram" /></div>
+                    <div class="arch-body">
+                        <h3>HA Physical Topology<span class="arch-year">2022</span></h3>
+                        <p>Multi-region multi-cluster deployment: IDC + cloud hybrid, gateway & security zones</p>
+                        <span class="arch-expand">View solution →</span>
+                    </div>
+                </article>
+                <article class="arch-card" data-arch="logic" style="--ac:#818cf8" tabindex="0" role="button" aria-label="HA Logical Topology — view solution">
+                    <div class="arch-cover"><img src="img/arch-logic-en.svg" alt="HA logical topology diagram" /></div>
+                    <div class="arch-body">
+                        <h3>HA Logical Topology<span class="arch-year">2022</span></h3>
+                        <p>Logical view: traffic governance, data sync, observability & DevOps</p>
+                        <span class="arch-expand">View solution →</span>
+                    </div>
+                </article>
             </div>
         </div>
 
@@ -918,6 +1176,30 @@ img{max-width:100%}
                         <span class="chip">Vector Index</span>
                         <span class="chip">Recall/Rank</span>
                         <span class="chip">Multi-modal</span>
+                    </div>
+                </div>
+                <div class="tech-card featured">
+                    <span class="scope-badge">AI / LLM</span>
+                    <h3>LLM Apps · Multi-modal AI</h3>
+                    <p>SSE streaming dialogue, wake-up / ASR / TTS, OpenGL digital human; YOLOv8 + ByteTrack video
+                        understanding, FunASR + VAD + speaker diarization, LSTM/XGBoost forecasting.</p>
+                    <div class="chip-row">
+                        <span class="chip">SSE Streaming</span>
+                        <span class="chip">Speech / Digital Human</span>
+                        <span class="chip">YOLOv8 / ByteTrack</span>
+                        <span class="chip">Forecasting</span>
+                    </div>
+                </div>
+                <div class="tech-card">
+                    <span class="scope-badge">Search / Recs</span>
+                    <h3>Search · Recall · Ranking</h3>
+                    <p>Elasticsearch + Milvus dual engines, Canal Binlog incremental sync; recall-coarse-fine-rerank
+                        pipeline, user profiling & behavior features, personalized search & recommendation.</p>
+                    <div class="chip-row">
+                        <span class="chip">ES + Milvus</span>
+                        <span class="chip">Recall/Rank/Rerank</span>
+                        <span class="chip">User Profiling</span>
+                        <span class="chip">Personalization</span>
                     </div>
                 </div>
                 <div class="tech-card">
@@ -1102,6 +1384,180 @@ img{max-width:100%}
         });
         if(mask) mask.addEventListener('click',close);
         document.addEventListener('keydown',function(e){ if(e.key==='Escape') close(); });
+
+        // ---- open-source detail modal (motion-forward) ----
+        var reduceMotion=window.matchMedia&&window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+        var IC_DEMO='<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 3h6v6"/><path d="M10 14 21 3"/><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/></svg>';
+        var IC_CODE='<svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2A10 10 0 0 0 2 12c0 4.42 2.87 8.17 6.84 9.5.5.09.66-.22.66-.48 0-.24-.01-.87-.01-1.7-2.78.6-3.37-1.34-3.37-1.34-.45-1.16-1.11-1.47-1.11-1.47-.91-.62.07-.6.07-.6 1 .07 1.53 1.03 1.53 1.03.9 1.53 2.34 1.09 2.91.83.09-.65.35-1.09.63-1.34-2.22-.25-4.55-1.11-4.55-4.94 0-1.09.39-1.98 1.03-2.68-.1-.25-.45-1.27.1-2.65 0 0 .84-.27 2.75 1.02a9.6 9.6 0 0 1 5 0c1.91-1.29 2.75-1.02 2.75-1.02.55 1.38.2 2.4.1 2.65.64.7 1.03 1.59 1.03 2.68 0 3.84-2.34 4.68-4.57 4.93.36.31.68.92.68 1.85 0 1.34-.01 2.42-.01 2.74 0 .27.16.58.67.48A10 10 0 0 0 12 2Z"/></svg>';
+        var OSS={
+          seven:{cover:'img/oss-seven.svg',title:'AI Paper Plagiarism Check',tagline:'Paper & image similarity check for research / universities',
+            stats:[{n:5,u:'M',l:'Image Vectors'},{n:3,u:'',l:'Check Modes'},{n:3,u:'-Level',l:'Expert Review'}],
+            desc:'Batch upload of PDFs and images with intra-doc, strategy, and full-library checks; SIFT / SURF feature matching + vector retrieval for image similarity, a 3-level expert review flow, and auto-generated standardized reports.',
+            chips:['Spring Boot','Python','Milvus','CLIP','DINOv2','ResNet50','SIFT/SURF','Vue3','RabbitMQ','OpenResty'],
+            hl:['Global PDF parsing + 5M small-image vector index design & retrieval for large-scale library matching','Intra-doc / strategy / full-library check modes for different research scenarios','3-level expert review + standardized report output for acceptance and traceability','Intranet delivery, data isolation, CI/CD and O&M monitoring loop'],
+            links:[{t:'Live Demo',u:'https://seven.weilantech.com',demo:true},{t:'seven-server',u:'https://github.com/Allen-LPL/seven-server'}]},
+          blood:{cover:'img/oss-blood.svg',title:'Blood Supply Forecasting',tagline:'Blood supply time-series forecasting (algorithm + full stack)',
+            stats:[{n:3,u:'',l:'Parallel Models'},{n:12,u:'y',l:'Feature Span 2015–26'},{txt:'Patent',l:'Originality'}],
+            desc:'Time-series forecasting of blood supply by blood bank / type to support collection planning and inventory scheduling; three parallel models with calendar + weather feature engineering, residual modeling, sample weighting and multi-window rolling backtest.',
+            chips:['Keras/LSTM','XGBoost','Conv1D-LSTM','Pandas/Numpy','Spring Boot','Vue3','MySQL'],
+            hl:['LSTM+XGBoost ensemble (primary), Conv1D-LSTM hybrid, standalone XGBoost — three models compared','Calendar + weather feature engineering (2015–2026, holidays/workdays/weekends), residual modeling & sample weighting','Multi-window rolling backtest, per-blood-category models; sources support Excel and MySQL','A related patent draft filed, supporting collection planning and inventory scheduling'],
+            links:[{t:'Live Demo',u:'http://blood.weilantech.com/',demo:true},{t:'Algorithm',u:'https://github.com/Allen-LPL/blood-prediction-algorithm'},{t:'Backend',u:'https://github.com/Allen-LPL/blood-BN'},{t:'Frontend',u:'https://github.com/Allen-LPL/blood-three'}]},
+          emergency:{cover:'img/oss-emergency.svg',title:'Pre-hospital Multi-modal Scoring',tagline:'Auto-scoring of 120 three-person first-aid exam videos',
+            stats:[{n:6,u:'',l:'Scoring Stages'},{n:3,u:'',l:'Modalities'},{txt:'GPU',l:'Containerized'}],
+            desc:'Upload a three-person pre-hospital first-aid exam video (with audio) to auto-parse actions and commands and produce a 100-point score with suggestions; video, audio and sensor events are aligned on one timeline.',
+            chips:['Python','FastAPI','YOLOv8','ByteTrack','FunASR','Silero-VAD','pyannote','Celery','PostgreSQL','React','Docker(GPU)'],
+            hl:['YOLOv8 detection + ByteTrack multi-person tracking + pose/action recognition to judge coordinated rescue','FunASR Chinese ASR + VAD + speaker diarization, matching command/call-for-help keywords','Video + audio + sensor unified timeline, rule-engine 6-stage 100-point scoring','HTML/PDF report: per-item scores, radar chart, deduction reasons, timeline replay & tips'],
+            links:[{t:'Emergency-AI-Examiner',u:'https://github.com/Allen-LPL/Emergency-AI-Examiner'}]},
+          mydesign:{cover:'img/oss-mydesign.svg',title:'Mydesign Cross-border',tagline:'Cross-border DTC site, from prototype to overseas growth',
+            stats:[{txt:'Personalized',l:'Search / Recs'},{n:3,u:'',l:'Repos'},{txt:'AWS',l:'Automated'}],
+            desc:'Cross-border DTC site going overseas: AWS deployment, cross-border data sync and domestic-access acceleration, handling FX/tax/timezone/language differences, and productized personalized search & recommendation.',
+            chips:['Spring Boot','Python','Elasticsearch','Redis','RabbitMQ','Nacos','Vue3','UniApp','AWS','Docker','OpenResty'],
+            hl:['Co-created prototype & roadmap with stakeholders, agile rolling iteration across product/transaction/marketing','AWS deployment + cross-border data sync + task orchestration, optimizing domestic-to-overseas links','Handled FX/tax/timezone/language differences, multi-site config and offline/real-time sync','Productized personalized search & recommendation, first-screen optimization and monitoring'],
+            links:[{t:'Live Demo',u:'https://m.mydesign-fashion.com/',demo:true},{t:'Backend',u:'https://github.com/Allen-LPL/mydesign'},{t:'Frontend',u:'https://github.com/Allen-LPL/mydesign-frontend'},{t:'Admin',u:'https://github.com/Allen-LPL/mydesign-admin-frontend'}]}
+        };
+        function esc(s){return String(s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;');}
+        function renderOss(d){
+          var stats=d.stats.map(function(s){
+            var val=(s.n!=null)?('<b data-count="'+s.n+'" data-suffix="'+(s.u||'')+'">0'+(s.u||'')+'</b>'):('<b>'+esc(s.txt)+'</b>');
+            return '<div class="oss-stat">'+val+'<span>'+esc(s.l)+'</span></div>';
+          }).join('');
+          var chips=d.chips.map(function(c){return '<span class="chip">'+esc(c)+'</span>';}).join('');
+          var hl=d.hl.map(function(h){return '<li>'+esc(h)+'</li>';}).join('');
+          var links=d.links.map(function(l){
+            return '<a class="btn-link'+(l.demo?' primary':'')+'" href="'+l.u+'" target="_blank" rel="noopener">'+(l.demo?IC_DEMO:IC_CODE)+' '+esc(l.t)+'</a>';
+          }).join('');
+          return ''+
+            '<div class="oss-hero"><img src="'+d.cover+'" alt="" /></div>'+
+            '<div class="oss-head"><h2 id="ossModalTitle">'+esc(d.title)+'</h2><p>'+esc(d.tagline)+'</p></div>'+
+            '<div class="oss-content">'+
+              '<div class="oss-stats oss-reveal">'+stats+'</div>'+
+              '<div class="oss-reveal"><p class="oss-sec-label">Overview</p><p class="oss-sec-desc">'+esc(d.desc)+'</p></div>'+
+              '<div class="oss-reveal"><p class="oss-sec-label">Tech Stack</p><div class="oss-chips">'+chips+'</div></div>'+
+              '<div class="oss-reveal"><p class="oss-sec-label">Highlights</p><ul class="oss-hl">'+hl+'</ul></div>'+
+              '<div class="oss-reveal"><p class="oss-sec-label">Links</p><div class="detail-links">'+links+'</div></div>'+
+            '</div>';
+        }
+        function countUp(scope){
+          scope.querySelectorAll('[data-count]').forEach(function(el){
+            var end=parseFloat(el.getAttribute('data-count')),suf=el.getAttribute('data-suffix')||'',dur=900,start=null;
+            function step(ts){ if(start===null)start=ts; var p=Math.min(1,(ts-start)/dur),e=1-Math.pow(1-p,3);
+              el.textContent=Math.round(end*e)+suf; if(p<1)requestAnimationFrame(step); else el.textContent=end+suf; }
+            requestAnimationFrame(step);
+          });
+        }
+        var ARCH={
+          ai:{img:'img/arch-ai-platform-en.svg',title:'Multi-modal AI Platform',year:'2026',ac:'#e879a6',
+            desc:'Medical-emergency multi-modal AI platform: vision/speech/dialogue/time-series fused on a unified timeline, with rule-engine scoring and an MLOps engineering loop.',
+            points:['Application: Android tablet (CPR/Heimlich) · AI Rescuer · Web exam console · scoring reports','Inference: YOLOv8+ByteTrack vision · FunASR+VAD speech · LLM+RAG+digital human dialogue · LSTM+XGBoost time-series','Fusion: video/audio/sensor unified timeline → rule-engine 100-point score → radar / deductions / suggestions','Data: ES + Milvus dual engines, feature engineering (calendar+weather), object storage & cache','MLOps: collect/label → train (GPU) → register/eval → deploy (Docker) → monitor, continuous iteration','Hardware: Bluetooth/UART(RS485/232/TTL)/Socket to CPR manikins and AED simulators'],
+            chips:['YOLOv8','ByteTrack','FunASR','Silero-VAD','Milvus','Elasticsearch','LSTM','XGBoost','SSE Digital Human','Rule Engine','Docker GPU']},
+          search:{img:'img/arch-search-rec-en.svg',title:'Search & Recommendation',year:'Strategy · Model',ac:'#34d399',
+            desc:'Strategy + model infrastructure for search & recommendation: a multi-recall → coarse → fine → rerank funnel, with a feature platform, model serving and an A/B testing loop.',
+            points:['Multi-recall: inverted (ES) · vector (Milvus/ANN) · collaborative filtering (i2i/u2i) · hot/rules','Ranking funnel: coarse (lightweight/two-tower) → fine (DNN/GBDT) → rerank (diversity/business rules)','Feature platform: user profiling/behavior/context, online-offline feature consistency','Model serving: LR/GBDT/DNN/two-tower, samples (impression/click) & online scoring','Data engineering: behavior logs (Kafka) · realtime (Flink) · offline warehouse (Hive) · Canal CDC incremental index','Experiment & iteration: A/B split, CTR/CVR metrics, effect monitoring, continuous model retraining'],
+            chips:['Multi-recall','Vector Recall (ANN)','Coarse/Fine/Rerank','Feature Platform','Two-tower','A/B Testing','Elasticsearch','Milvus','Flink','Kafka','Personalization']},
+          dist:{img:'img/arch-dist-en.svg',title:'Distributed Arch Case',year:'2019',ac:'#38bdf8',
+            desc:'Early toC platform distributed evolution: from monolith to service splitting, building a caching layer, monitoring and data links to support rapid growth.',
+            points:['Services split by business domain, interface governance & auth','Redis caching layer + read/write splitting to ease database pressure','Monitoring alerts and log links, issues are locatable','Message-queue async decoupling, peak clipping & eventual consistency'],
+            chips:['Microservices','Redis Cache','R/W Splitting','Monitoring','Async Decoupling']},
+          phys:{img:'img/arch-phys-en.svg',title:'HA Physical Topology',year:'2022',ac:'#f5b451',
+            desc:'Multi-region, multi-cluster physical deployment: AliCloud + IDC hybrid cloud, covering gateway layer, security zones and DR for high availability and attack resistance.',
+            points:['AliCloud + IDC hybrid cloud, multi-region multi-cluster deployment','OpenResty gateway layer + self-built WAF security zone','DDoS / CC protection & traffic scrubbing (withstood 600G mixed attacks)','Active-standby / multi-active DR and capacity planning'],
+            chips:['Hybrid Cloud','Multi-Active DR','OpenResty Gateway','Security Zone','Anti-DDoS']},
+          logic:{img:'img/arch-logic-en.svg',title:'HA Logical Topology',year:'2022',ac:'#818cf8',
+            desc:'Logical-service view of traffic governance and data sync: canary release, CDC incremental sync, observability and full DevOps flow.',
+            points:['OpenResty canary / rolling release and traffic governance','Canal Binlog CDC → Elasticsearch incremental sync','Zabbix / Grafana / ES log observability system','CI/CD, CMDB and automated O&M loop'],
+            chips:['Canary Release','CDC Sync','Observability','DevOps','CMDB']}
+        };
+        function renderArch(d){
+          var pts=d.points.map(function(p){return '<li>'+esc(p)+'</li>';}).join('');
+          var chips=d.chips.map(function(c){return '<span class="chip">'+esc(c)+'</span>';}).join('');
+          return ''+
+            '<div class="arch-figure oss-reveal"><img class="arch-zoom" src="'+d.img+'" alt="'+esc(d.title)+' diagram" /><span class="arch-figure__hint">Click to zoom ⤢</span></div>'+
+            '<div class="oss-head"><h2 id="ossModalTitle">'+esc(d.title)+'<span class="arch-yr" style="color:'+d.ac+';border-color:'+d.ac+'">'+esc(d.year)+'</span></h2><p>'+esc(d.desc)+'</p></div>'+
+            '<div class="oss-content">'+
+              '<div class="oss-reveal"><p class="oss-sec-label">Layers / Notes</p><ul class="oss-hl">'+pts+'</ul></div>'+
+              '<div class="oss-reveal"><p class="oss-sec-label">Key Tech</p><div class="oss-chips">'+chips+'</div></div>'+
+            '</div>';
+        }
+        var ossModal=document.getElementById('ossModal');
+        if(ossModal){
+          var ossDialog=ossModal.querySelector('.oss-modal__dialog'),
+              ossBody=document.getElementById('ossModalBody'),
+              ossLastFocus=null, ossCurrentCard=null, ossClosing=false;
+          function openModal(card){
+            var isArch=card.hasAttribute('data-arch');
+            var id=card.getAttribute(isArch?'data-arch':'data-oss');
+            var d=(isArch?ARCH:OSS)[id]; if(!d) return;
+            ossBody.innerHTML=isArch?renderArch(d):renderOss(d);
+            ossModal.classList.add('open'); void ossModal.offsetWidth;
+            ossModal.classList.add('show');
+            document.body.style.overflow='hidden';
+            ossLastFocus=document.activeElement; ossCurrentCard=card;
+            ossDialog.style.opacity='1';
+            if(card && !reduceMotion && ossDialog.animate){
+              var dr=ossDialog.getBoundingClientRect(), cr=card.getBoundingClientRect();
+              var s=Math.max(.12,Math.min(cr.width/dr.width,cr.height/dr.height));
+              var tx=(cr.left+cr.width/2)-(dr.left+dr.width/2), ty=(cr.top+cr.height/2)-(dr.top+dr.height/2);
+              ossDialog.animate([
+                {opacity:0,transform:'translate(-50%,-50%) translate('+tx+'px,'+ty+'px) scale('+s+')'},
+                {opacity:1,transform:'translate(-50%,-50%) translate(0,0) scale(1)'}
+              ],{duration:300,easing:'cubic-bezier(.22,1,.36,1)'});
+            }
+            var revs=ossBody.querySelectorAll('.oss-reveal');
+            revs.forEach(function(el,i){ el.style.animationDelay=(reduceMotion?0:(130+i*70))+'ms'; });
+            if(!reduceMotion) countUp(ossBody);
+            if(isArch){ var zi=ossBody.querySelector('.arch-zoom'); if(zi) zi.addEventListener('click',function(){ open(zi.getAttribute('src')); }); }
+            var cb=ossModal.querySelector('.oss-modal__close'); if(cb) cb.focus();
+          }
+          function ossClose(){
+            if(mask&&mask.style.display==='block') return; /* let lightbox close first */
+            if(!ossModal.classList.contains('open')||ossClosing) return;
+            var done=function(){ ossClosing=false; ossModal.classList.remove('open','show','closing');
+              ossBody.innerHTML=''; ossDialog.style.opacity=''; document.body.style.overflow='';
+              if(ossLastFocus&&ossLastFocus.focus) ossLastFocus.focus(); ossCurrentCard=null; };
+            if(reduceMotion||!ossDialog.animate){ done(); return; }
+            ossClosing=true; ossModal.classList.add('closing');
+            var dr=ossDialog.getBoundingClientRect(),
+                cr=ossCurrentCard?ossCurrentCard.getBoundingClientRect():null, kf;
+            if(cr){ var s=Math.max(.12,Math.min(cr.width/dr.width,cr.height/dr.height));
+              var tx=(cr.left+cr.width/2)-(dr.left+dr.width/2), ty=(cr.top+cr.height/2)-(dr.top+dr.height/2);
+              kf=[{opacity:1,transform:'translate(-50%,-50%) translate(0,0) scale(1)'},
+                  {opacity:0,transform:'translate(-50%,-50%) translate('+tx+'px,'+ty+'px) scale('+s+')'}];
+            } else { kf=[{opacity:1},{opacity:0}]; }
+            var a=ossDialog.animate(kf,{duration:240,easing:'cubic-bezier(.4,0,.2,1)'});
+            a.onfinish=done; setTimeout(function(){ if(ossClosing) done(); },420);
+          }
+          document.querySelectorAll('.oss-card,.arch-card').forEach(function(card){
+            card.addEventListener('click',function(e){ e.preventDefault(); openModal(card); });
+            card.addEventListener('keydown',function(e){
+              if(e.key==='Enter'||e.key===' '){ e.preventDefault(); openModal(card); }
+            });
+            if(!reduceMotion){
+              card.addEventListener('pointermove',function(e){
+                if(e.pointerType==='touch'||card.classList.contains('reveal-init')) return;
+                var r=card.getBoundingClientRect(), px=(e.clientX-r.left)/r.width-.5, py=(e.clientY-r.top)/r.height-.5;
+                card.style.transform='translateY(-6px) rotateX('+(-py*4).toFixed(2)+'deg) rotateY('+(px*4).toFixed(2)+'deg)';
+              });
+              card.addEventListener('pointerleave',function(){ card.style.transform=''; });
+            }
+          });
+          ossModal.querySelectorAll('[data-close]').forEach(function(el){ el.addEventListener('click',ossClose); });
+          document.addEventListener('keydown',function(e){ if(e.key==='Escape') ossClose(); });
+
+          // ---- scroll-reveal for architecture cards ----
+          var archCards=[].slice.call(document.querySelectorAll('.arch-card'));
+          if(archCards.length && !reduceMotion && 'IntersectionObserver' in window){
+            archCards.forEach(function(c,i){ c.classList.add('reveal-init'); c.style.transitionDelay=(i*70)+'ms'; });
+            var revObs=new IntersectionObserver(function(entries){
+              entries.forEach(function(en){
+                if(en.isIntersecting){
+                  var t=en.target; t.classList.remove('reveal-init'); revObs.unobserve(t);
+                  setTimeout(function(){ t.style.transitionDelay=''; },1200);
+                }
+              });
+            },{threshold:.15});
+            archCards.forEach(function(c){ revObs.observe(c); });
+          }
+        }
     })();
     </script>
 </body>

@@ -1,0 +1,109 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 540" font-family="ui-sans-serif,system-ui,'Segoe UI',Roboto,sans-serif" role="img" aria-label="Multi-modal AI model development and MLOps platform architecture">
+  <defs>
+    <linearGradient id="ap-bg" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#0e1626"/><stop offset="1" stop-color="#0a0f1b"/></linearGradient>
+    <pattern id="ap-grid" width="40" height="40" patternUnits="userSpaceOnUse"><path d="M40 0H0V40" fill="none" stroke="#ffffff" stroke-opacity=".04"/></pattern>
+    <marker id="ap-arrow" markerWidth="9" markerHeight="9" refX="6" refY="3" orient="auto"><path d="M0 0 L6 3 L0 6 Z" fill="#5b7089"/></marker>
+    <marker id="ap-arrow-mg" markerWidth="9" markerHeight="9" refX="6" refY="3" orient="auto"><path d="M0 0 L6 3 L0 6 Z" fill="#e879a6"/></marker>
+  </defs>
+  <rect width="1000" height="540" fill="url(#ap-bg)"/>
+  <rect width="1000" height="540" fill="url(#ap-grid)"/>
+  <text x="500" y="40" text-anchor="middle" font-size="22" font-weight="700" fill="#f4f8fd">Multi-modal AI Model Dev &amp; MLOps Platform</text>
+  <text x="500" y="63" text-anchor="middle" font-size="12.5" fill="#9fb0c3">Medical emergency · Vision / Speech / Dialogue / Time-series + MLOps loop</text>
+
+  <!-- LEFT: hardware rail -->
+  <g>
+    <rect x="18" y="96" width="98" height="326" rx="12" fill="#0c1a1a" stroke="#2dd4bf" stroke-opacity=".4"/>
+    <text x="67" y="120" text-anchor="middle" font-size="12" font-weight="600" fill="#5eead4">Hardware</text>
+    <g font-size="10.5" fill="#cbeee7" text-anchor="middle">
+      <rect x="28" y="134" width="78" height="34" rx="7" fill="#0f2422" stroke="#2dd4bf" stroke-opacity=".3"/><text x="67" y="155">Bluetooth</text>
+      <rect x="28" y="176" width="78" height="46" rx="7" fill="#0f2422" stroke="#2dd4bf" stroke-opacity=".3"/><text x="67" y="195">UART</text><text x="67" y="211" font-size="8.5" fill="#7fd8cb">RS485/232/TTL</text>
+      <rect x="28" y="230" width="78" height="34" rx="7" fill="#0f2422" stroke="#2dd4bf" stroke-opacity=".3"/><text x="67" y="251">Socket</text>
+    </g>
+    <text x="67" y="290" text-anchor="middle" font-size="10" fill="#7fd8cb">Connects</text>
+    <text x="67" y="306" text-anchor="middle" font-size="10" fill="#cbeee7">CPR manikin</text>
+    <text x="67" y="322" text-anchor="middle" font-size="10" fill="#cbeee7">AED simulator</text>
+    <line x1="116" y1="150" x2="126" y2="150" stroke="#2dd4bf" stroke-width="1.5" marker-end="url(#ap-arrow)"/>
+    <line x1="116" y1="300" x2="126" y2="300" stroke="#2dd4bf" stroke-width="1.5" marker-end="url(#ap-arrow)"/>
+  </g>
+
+  <!-- A application -->
+  <g>
+    <rect x="128" y="96" width="684" height="74" rx="12" fill="#38bdf8" fill-opacity=".05" stroke="#38bdf8" stroke-opacity=".28"/>
+    <rect x="140" y="88" width="96" height="20" rx="10" fill="#0e1626" stroke="#38bdf8" stroke-opacity=".4"/><text x="188" y="102" text-anchor="middle" font-size="11" font-weight="600" fill="#7dd3fc">Application</text>
+    <g font-size="12" fill="#e6edf5" text-anchor="middle">
+      <rect x="150" y="116" width="150" height="44" rx="8" fill="#0f1a2c" stroke="#ffffff" stroke-opacity=".13"/><text x="225" y="134">Android tablet</text><text x="225" y="150" font-size="9" fill="#9fb0c3">CPR / Heimlich</text>
+      <rect x="312" y="116" width="150" height="44" rx="8" fill="#0f1a2c" stroke="#ffffff" stroke-opacity=".13"/><text x="387" y="142">AI Rescuer APP</text>
+      <rect x="474" y="116" width="150" height="44" rx="8" fill="#0f1a2c" stroke="#ffffff" stroke-opacity=".13"/><text x="549" y="142">Web exam console</text>
+      <rect x="636" y="116" width="150" height="44" rx="8" fill="#0f1a2c" stroke="#ffffff" stroke-opacity=".13"/><text x="711" y="142">Scoring report</text>
+    </g>
+  </g>
+  <line x1="470" y1="170" x2="470" y2="184" stroke="#5b7089" stroke-width="1.6" marker-end="url(#ap-arrow)"/>
+
+  <!-- B gateway -->
+  <g>
+    <rect x="128" y="186" width="684" height="66" rx="12" fill="#38bdf8" fill-opacity=".05" stroke="#38bdf8" stroke-opacity=".28"/>
+    <rect x="140" y="178" width="128" height="20" rx="10" fill="#0e1626" stroke="#38bdf8" stroke-opacity=".4"/><text x="204" y="192" text-anchor="middle" font-size="11" font-weight="600" fill="#7dd3fc">Gateway / Service</text>
+    <g font-size="12" fill="#e6edf5" text-anchor="middle">
+      <rect x="150" y="202" width="150" height="42" rx="8" fill="#0f1a2c" stroke="#ffffff" stroke-opacity=".13"/><text x="225" y="228">OpenResty GW</text>
+      <rect x="312" y="202" width="150" height="42" rx="8" fill="#0f1a2c" stroke="#ffffff" stroke-opacity=".13"/><text x="387" y="228">FastAPI / Boot</text>
+      <rect x="474" y="202" width="150" height="42" rx="8" fill="#0f1a2c" stroke="#ffffff" stroke-opacity=".13"/><text x="549" y="228">SSE Streaming</text>
+      <rect x="636" y="202" width="150" height="42" rx="8" fill="#0f1a2c" stroke="#ffffff" stroke-opacity=".13"/><text x="711" y="228">Auth / Rate-limit</text>
+    </g>
+  </g>
+  <line x1="470" y1="252" x2="470" y2="266" stroke="#5b7089" stroke-width="1.6" marker-end="url(#ap-arrow)"/>
+
+  <!-- C inference -->
+  <g>
+    <rect x="128" y="268" width="684" height="158" rx="12" fill="#e879a6" fill-opacity=".05" stroke="#e879a6" stroke-opacity=".32"/>
+    <rect x="140" y="260" width="104" height="20" rx="10" fill="#0e1626" stroke="#e879a6" stroke-opacity=".45"/><text x="192" y="274" text-anchor="middle" font-size="11" font-weight="600" fill="#f0a6c4">AI Inference</text>
+    <g font-size="12" fill="#e6edf5" text-anchor="middle">
+      <rect x="150" y="286" width="150" height="56" rx="8" fill="#141021" stroke="#e879a6" stroke-opacity=".28"/><text x="225" y="308">Vision</text><text x="225" y="325" font-size="9" fill="#c9a7b8">YOLOv8+ByteTrack</text>
+      <rect x="312" y="286" width="150" height="56" rx="8" fill="#141021" stroke="#e879a6" stroke-opacity=".28"/><text x="387" y="308">Speech</text><text x="387" y="325" font-size="9" fill="#c9a7b8">FunASR+VAD+Diar</text>
+      <rect x="474" y="286" width="150" height="56" rx="8" fill="#141021" stroke="#e879a6" stroke-opacity=".28"/><text x="549" y="308">Dialogue</text><text x="549" y="325" font-size="9" fill="#c9a7b8">LLM+RAG+Avatar</text>
+      <rect x="636" y="286" width="150" height="56" rx="8" fill="#141021" stroke="#e879a6" stroke-opacity=".28"/><text x="711" y="308">Time-series</text><text x="711" y="325" font-size="9" fill="#c9a7b8">LSTM+XGBoost</text>
+      <rect x="150" y="352" width="636" height="60" rx="8" fill="#e879a6" fill-opacity=".1" stroke="#e879a6" stroke-opacity=".45"/>
+      <text x="468" y="378" font-size="14" font-weight="650" fill="#f7c9dd">Multi-modal Unified Timeline · Fusion</text>
+      <text x="468" y="398" font-size="10.5" fill="#e6a9c4">Video / audio / sensor aligned → rule-engine 100-pt scoring → radar · deductions · tips</text>
+    </g>
+  </g>
+  <line x1="470" y1="426" x2="470" y2="440" stroke="#5b7089" stroke-width="1.6" marker-end="url(#ap-arrow)"/>
+
+  <!-- D data -->
+  <g>
+    <rect x="128" y="442" width="684" height="74" rx="12" fill="#818cf8" fill-opacity=".05" stroke="#818cf8" stroke-opacity=".3"/>
+    <rect x="140" y="434" width="112" height="20" rx="10" fill="#0e1626" stroke="#818cf8" stroke-opacity=".45"/><text x="196" y="448" text-anchor="middle" font-size="11" font-weight="600" fill="#a5b4fc">Data / Feature</text>
+    <g font-size="10.5" fill="#e6edf5" text-anchor="middle">
+      <rect x="150" y="462" width="100" height="46" rx="8" fill="#12142a" stroke="#818cf8" stroke-opacity=".25"/><text x="200" y="482">PostgreSQL</text><text x="200" y="496" font-size="9" fill="#aab0d8">/ MySQL</text>
+      <rect x="262" y="462" width="100" height="46" rx="8" fill="#12142a" stroke="#818cf8" stroke-opacity=".25"/><text x="312" y="489">Redis</text>
+      <rect x="374" y="462" width="100" height="46" rx="8" fill="#12142a" stroke="#818cf8" stroke-opacity=".25"/><text x="424" y="482">Object store</text><text x="424" y="496" font-size="9" fill="#aab0d8">media</text>
+      <rect x="486" y="462" width="100" height="46" rx="8" fill="#12142a" stroke="#818cf8" stroke-opacity=".25"/><text x="536" y="482">Features</text><text x="536" y="496" font-size="8.5" fill="#aab0d8">calendar+weather</text>
+      <rect x="598" y="462" width="100" height="46" rx="8" fill="#12142a" stroke="#818cf8" stroke-opacity=".25"/><text x="648" y="482">Milvus</text><text x="648" y="496" font-size="9" fill="#aab0d8">vector</text>
+      <rect x="710" y="462" width="76" height="46" rx="8" fill="#12142a" stroke="#818cf8" stroke-opacity=".25"/><text x="748" y="482">ES</text><text x="748" y="496" font-size="9" fill="#aab0d8">search</text>
+    </g>
+  </g>
+
+  <!-- RIGHT: MLOps loop -->
+  <g>
+    <rect x="828" y="96" width="156" height="420" rx="12" fill="#1a1406" stroke="#f5b451" stroke-opacity=".38"/>
+    <text x="906" y="120" text-anchor="middle" font-size="12" font-weight="600" fill="#f5c877">MLOps Loop</text>
+    <g font-size="10.5" fill="#f3e2c4" text-anchor="middle">
+      <rect x="844" y="132" width="108" height="40" rx="8" fill="#221a08" stroke="#f5b451" stroke-opacity=".3"/><text x="898" y="156">Collect / Label</text>
+      <rect x="844" y="188" width="108" height="40" rx="8" fill="#221a08" stroke="#f5b451" stroke-opacity=".3"/><text x="898" y="212">Train (GPU)</text>
+      <rect x="844" y="244" width="108" height="40" rx="8" fill="#221a08" stroke="#f5b451" stroke-opacity=".3"/><text x="898" y="268">Register / Eval</text>
+      <rect x="844" y="300" width="108" height="40" rx="8" fill="#221a08" stroke="#f5b451" stroke-opacity=".3"/><text x="898" y="324">Deploy Docker</text>
+      <rect x="844" y="356" width="108" height="40" rx="8" fill="#221a08" stroke="#f5b451" stroke-opacity=".3"/><text x="898" y="380">Monitor Grafana</text>
+    </g>
+    <g stroke="#c08a2e" stroke-width="1.5" fill="none">
+      <line x1="898" y1="172" x2="898" y2="186" marker-end="url(#ap-arrow)"/>
+      <line x1="898" y1="228" x2="898" y2="242" marker-end="url(#ap-arrow)"/>
+      <line x1="898" y1="284" x2="898" y2="298" marker-end="url(#ap-arrow)"/>
+      <line x1="898" y1="340" x2="898" y2="354" marker-end="url(#ap-arrow)"/>
+      <path d="M952 376 q26 0 26 -30 V182 q0 -30 -26 -30" stroke="#f5b451" stroke-opacity=".7" stroke-dasharray="5 5" marker-end="url(#ap-arrow)"/>
+    </g>
+    <text x="972" y="272" font-size="9" fill="#c9a24a" transform="rotate(90 972 272)">Iterate</text>
+  </g>
+  <path d="M812 480 H820 q10 0 10 -12 V212 q0 -4 12 -4" fill="none" stroke="#8a6a3a" stroke-width="1.4" stroke-dasharray="4 5" marker-end="url(#ap-arrow)"/>
+  <text x="824" y="452" font-size="9" fill="#c9a24a" text-anchor="end">Data→Train</text>
+  <path d="M844 320 H822 q-10 0 -10 -12 V300" fill="none" stroke="#b56b8a" stroke-width="1.4" stroke-dasharray="4 5" marker-end="url(#ap-arrow-mg)"/>
+  <text x="820" y="336" font-size="9" fill="#e0a0bd" text-anchor="end">Deploy</text>
+</svg>
