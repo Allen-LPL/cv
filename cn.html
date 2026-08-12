@@ -1015,8 +1015,16 @@ img{max-width:100%}
                         <span class="arch-expand">查看方案 →</span>
                     </div>
                 </article>
+                <article class="arch-card" data-arch="search" style="--ac:#34d399" tabindex="0" role="button" aria-label="搜索推荐平台 — 查看方案">
+                    <div class="arch-cover"><img src="img/arch-search-rec.svg" alt="搜索推荐策略与模型基础建设 架构图" /></div>
+                    <div class="arch-body">
+                        <h3>搜索推荐平台<span class="arch-year">策略 · 模型</span></h3>
+                        <p>多路召回 → 粗排 → 精排 → 重排 · 特征平台 + 模型服务 + A/B 实验</p>
+                        <span class="arch-expand">查看方案 →</span>
+                    </div>
+                </article>
                 <article class="arch-card" data-arch="dist" style="--ac:#38bdf8" tabindex="0" role="button" aria-label="分布式架构案例 — 查看方案">
-                    <div class="arch-cover"><img src="img/architecture.png" alt="分布式架构案例 架构图" /></div>
+                    <div class="arch-cover"><img src="img/arch-dist.svg" alt="分布式架构案例 架构图" /></div>
                     <div class="arch-body">
                         <h3>分布式架构案例<span class="arch-year">2019</span></h3>
                         <p>早期 toC 平台分布式演进：服务拆分、缓存层、监控与数据链路</p>
@@ -1024,7 +1032,7 @@ img{max-width:100%}
                     </div>
                 </article>
                 <article class="arch-card" data-arch="phys" style="--ac:#f5b451" tabindex="0" role="button" aria-label="高可用物理拓扑 — 查看方案">
-                    <div class="arch-cover"><img src="img/physical%20network%20topology.png" alt="高可用物理拓扑 架构图" /></div>
+                    <div class="arch-cover"><img src="img/arch-phys.svg" alt="高可用物理拓扑 架构图" /></div>
                     <div class="arch-body">
                         <h3>高可用物理拓扑<span class="arch-year">2022</span></h3>
                         <p>多地域多集群物理部署：IDC + 云混合、网关层与安全域</p>
@@ -1032,7 +1040,7 @@ img{max-width:100%}
                     </div>
                 </article>
                 <article class="arch-card" data-arch="logic" style="--ac:#818cf8" tabindex="0" role="button" aria-label="高可用逻辑拓扑 — 查看方案">
-                    <div class="arch-cover"><img src="img/logical%20topology.png" alt="高可用逻辑拓扑 架构图" /></div>
+                    <div class="arch-cover"><img src="img/arch-logic.svg" alt="高可用逻辑拓扑 架构图" /></div>
                     <div class="arch-body">
                         <h3>高可用逻辑拓扑<span class="arch-year">2022</span></h3>
                         <p>逻辑服务视角：流量治理、数据同步、可观测与 DevOps</p>
@@ -1349,15 +1357,19 @@ img{max-width:100%}
             desc:'医疗急救多模态 AI 平台：视觉/语音/对话/时序在统一时间轴融合，配合规则引擎评分与 MLOps 工程化闭环。',
             points:['应用层：Android 平板(CPR/海姆立克) · AI急救侠 · Web 考核后台 · 评分报告','推理层：YOLOv8+ByteTrack 视觉 · FunASR+VAD 语音 · 大模型+RAG+数字人对话 · LSTM+XGBoost 时序','融合层：视频/音频/传感器统一时间轴 → 规则引擎百分制评分 → 雷达图/扣分原因/改进建议','数据层：ES + Milvus 双引擎、特征工程(日历+气象)、对象存储与缓存','MLOps：采集/标注 → 训练(GPU) → 注册/评估 → 部署(Docker) → 监控 持续迭代','硬件：蓝牙/UART(RS485/232/TTL)/Socket 对接 CPR 模拟人与 AED 模拟器'],
             chips:['YOLOv8','ByteTrack','FunASR','Silero-VAD','Milvus','Elasticsearch','LSTM','XGBoost','SSE 数字人','规则引擎','Docker GPU']},
-          dist:{img:'img/architecture.png',title:'分布式架构案例',year:'2019',ac:'#38bdf8',
+          search:{img:'img/arch-search-rec.svg',title:'搜索推荐平台',year:'策略 · 模型',ac:'#34d399',
+            desc:'搜索与推荐的策略 + 模型基础建设：多路召回 → 粗排 → 精排 → 重排的漏斗式排序，配合特征平台、模型服务与 A/B 实验闭环。',
+            points:['多路召回：倒排(ES) · 向量(Milvus/ANN) · 协同过滤(i2i/u2i) · 热门/规则','排序漏斗：粗排(轻量/双塔) → 精排(DNN/GBDT) → 重排(多样性/业务规则)','特征平台：用户画像/行为/上下文，在线-离线特征一致性','模型服务：LR/GBDT/DNN/双塔，样本(曝光/点击)与在线打分','数据工程：行为日志(Kafka) · 实时(Flink) · 离线数仓(Hive) · Canal CDC 增量索引','实验与迭代：A/B 分流、CTR/CVR 指标、效果监控、模型持续回流训练'],
+            chips:['多路召回','向量召回 ANN','粗排/精排/重排','特征平台','双塔模型','A/B 实验','Elasticsearch','Milvus','Flink','Kafka','千人千面']},
+          dist:{img:'img/arch-dist.svg',title:'分布式架构案例',year:'2019',ac:'#38bdf8',
             desc:'早期 toC 平台的分布式演进：从单体到服务拆分，构建缓存层、监控与数据链路，支撑业务快速增长。',
             points:['服务按业务域拆分，接口治理与鉴权','Redis 缓存层 + 读写分离，缓解数据库压力','监控告警与日志链路，问题可定位','消息队列异步解耦，削峰与最终一致'],
             chips:['微服务','Redis 缓存','读写分离','监控告警','异步解耦']},
-          phys:{img:'img/physical%20network%20topology.png',title:'高可用物理拓扑',year:'2022',ac:'#f5b451',
+          phys:{img:'img/arch-phys.svg',title:'高可用物理拓扑',year:'2022',ac:'#f5b451',
             desc:'多地域、多集群的物理部署：阿里云 + IDC 混合云，覆盖网关层、安全域与容灾，保障高可用与抗攻击。',
             points:['阿里云 + IDC 混合云，多地域多集群部署','OpenResty 网关层 + 自研 WAF 安全域','DDoS / CC 防护与流量清洗(抵御 600G 混合攻击)','主备 / 多活容灾与容量规划'],
             chips:['混合云','多活容灾','OpenResty 网关','安全域','抗 DDoS']},
-          logic:{img:'img/logical%20topology.png',title:'高可用逻辑拓扑',year:'2022',ac:'#818cf8',
+          logic:{img:'img/arch-logic.svg',title:'高可用逻辑拓扑',year:'2022',ac:'#818cf8',
             desc:'逻辑服务视角的流量治理与数据同步：灰度发布、CDC 增量同步、可观测与 DevOps 全流程。',
             points:['OpenResty 灰度 / 滚动发布与流量治理','Canal Binlog CDC → Elasticsearch 增量同步','Zabbix / Grafana / ES 日志可观测体系','CI/CD、CMDB 与自动化运维闭环'],
             chips:['灰度发布','CDC 同步','可观测','DevOps','CMDB']}
