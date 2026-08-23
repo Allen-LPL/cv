@@ -1,0 +1,143 @@
+/* plain.css — minimal black-and-white style for Markdown → PDF.
+ *
+ * No accent colour, no shaded code blocks, no table fills — just ink on paper.
+ * Use when you want the content to carry itself: contracts, plain notes,
+ * anything that should print like a typewritten document.
+ *
+ * Page geometry (A4 + margins) is set by md2pdf.js via Puppeteer, so this file
+ * intentionally sets no @page margin.
+ */
+
+:root {
+  --ink: #000;
+  --rule: #000;
+}
+
+html {
+  font-size: 11pt;
+}
+
+body {
+  margin: 0;
+  color: var(--ink);
+  font-family: "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei",
+    "Noto Sans CJK SC", -apple-system, "Helvetica Neue", Arial, sans-serif;
+  line-height: 1.65;
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+}
+
+img[align="right"] {
+  float: right;
+  margin: 0 0 12px 20px;
+  max-width: 140px;
+  height: auto;
+}
+
+img {
+  max-width: 100%;
+  height: auto;
+}
+
+/* --- Headings ----------------------------------------------------------- */
+h1 {
+  font-size: 1.6rem;
+  font-weight: 700;
+  margin: 0 0 0.5em;
+}
+
+h2 {
+  font-size: 1.25rem;
+  font-weight: 700;
+  margin: 1.4em 0 0.4em;
+  break-after: avoid;
+  page-break-after: avoid;
+}
+
+h3 {
+  font-size: 1.05rem;
+  font-weight: 700;
+  margin: 1.1em 0 0.35em;
+  break-after: avoid;
+  page-break-after: avoid;
+}
+
+/* --- Body copy ---------------------------------------------------------- */
+p {
+  margin: 0.6em 0;
+}
+
+strong {
+  font-weight: 700;
+}
+
+blockquote {
+  margin: 0.7em 0;
+  padding-left: 1em;
+  border-left: 2px solid var(--rule);
+}
+
+ul,
+ol {
+  margin: 0.5em 0 0.8em;
+  padding-left: 1.5em;
+}
+
+li {
+  margin: 0.25em 0;
+  break-inside: avoid;
+  page-break-inside: avoid;
+}
+
+/* --- Links -------------------------------------------------------------- */
+/* No colour: underline the text and print the URL isn't necessary here, we
+   just keep links legible in black. */
+a {
+  color: var(--ink);
+  text-decoration: underline;
+  word-break: break-all;
+}
+
+/* --- Code --------------------------------------------------------------- */
+code {
+  font-family: "SF Mono", "JetBrains Mono", Menlo, Consolas, monospace;
+  font-size: 0.9em;
+}
+
+pre {
+  border: 1px solid var(--rule);
+  padding: 0.8em 1em;
+  overflow-x: auto;
+  line-height: 1.5;
+  break-inside: avoid;
+  page-break-inside: avoid;
+}
+
+pre code {
+  padding: 0;
+}
+
+/* --- Tables ------------------------------------------------------------- */
+table {
+  border-collapse: collapse;
+  width: 100%;
+  margin: 0.7em 0;
+  font-size: 0.95em;
+}
+
+th,
+td {
+  border: 1px solid var(--rule);
+  padding: 0.4em 0.6em;
+  text-align: left;
+}
+
+th {
+  font-weight: 700;
+}
+
+hr {
+  border: none;
+  border-top: 1px solid var(--rule);
+  margin: 1.2em 0;
+}

@@ -1,4 +1,4 @@
-/* print.css — clean A4 document style for resume Markdown → PDF.
+/* resume.css — dense A4 style for resume Markdown → PDF (the default style).
  *
  * Page geometry (A4 + margins) and background printing are controlled by
  * md2pdf.js via Puppeteer's pdf() options, so this file deliberately does NOT

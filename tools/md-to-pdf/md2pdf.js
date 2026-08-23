@@ -9,16 +9,17 @@
  * exactly as a browser would.
  *
  * Pipeline:  Markdown --markdown-it(html:true)--> HTML fragment
- *            --> wrapped in an HTML doc that <link>s print.css
+ *            --> wrapped in an HTML doc that inlines the chosen style CSS
  *            --> written as a temp .html *inside the md's directory* so that
  *                relative file:// assets (img/...) resolve
  *            --> Chromium loads it via file:// and prints A4 PDF
  *            --> temp .html is removed
  *
  * Usage:
- *   node md2pdf.js <input.md> [-o <output.pdf>]
+ *   node md2pdf.js <input.md> [-o <output.pdf>] [-s <style>] [--css <file>]
  *
  * Default output is "<input basename>.pdf" next to the source .md (overwritten).
+ * Default style is "resume"; built-in styles live in styles/<name>.css.
  */
 
 const fs = require("fs");
@@ -27,11 +28,15 @@ const MarkdownIt = require("markdown-it");
 const puppeteer = require("puppeteer");
 
 function parseArgs(argv) {
-  const args = { input: null, output: null };
+  const args = { input: null, output: null, style: "resume", css: null };
   for (let i = 0; i < argv.length; i++) {
     const a = argv[i];
     if (a === "-o" || a === "--output") {
       args.output = argv[++i];
+    } else if (a === "-s" || a === "--style") {
+      args.style = argv[++i];
+    } else if (a === "--css") {
+      args.css = argv[++i];
     } else if (a === "-h" || a === "--help") {
       args.help = true;
     } else if (!args.input) {
@@ -41,6 +46,34 @@ function parseArgs(argv) {
     }
   }
   return args;
+}
+
+// Resolve which CSS file to inline. An explicit --css path wins; otherwise the
+// named --style maps to styles/<name>.css. Exits with a clear error (and the
+// list of available built-in styles) if the choice doesn't resolve to a file.
+function resolveCssPath(args) {
+  if (args.css) {
+    const p = path.resolve(args.css);
+    if (!fs.existsSync(p)) {
+      console.error(`Error: --css file not found: ${p}`);
+      process.exit(1);
+    }
+    return p;
+  }
+  const stylesDir = path.join(__dirname, "styles");
+  const p = path.join(stylesDir, `${args.style}.css`);
+  if (!fs.existsSync(p)) {
+    const available = fs
+      .readdirSync(stylesDir)
+      .filter((f) => f.endsWith(".css"))
+      .map((f) => f.replace(/\.css$/, ""))
+      .join(", ");
+    console.error(
+      `Error: unknown style "${args.style}". Available: ${available} (or pass --css <file>).`
+    );
+    process.exit(1);
+  }
+  return p;
 }
 
 // Resolve a Chromium/Chrome executable. Puppeteer ships its own Chromium, but
@@ -72,10 +105,14 @@ function resolveExecutablePath() {
 
 function usage() {
   console.log(
-    "Usage: node md2pdf.js <input.md> [-o <output.pdf>]\n" +
+    "Usage: node md2pdf.js <input.md> [-o <output.pdf>] [-s <style>] [--css <file>]\n" +
       "\n" +
       "  Renders a Markdown file (raw HTML/SVG + CJK supported) to a clean A4 PDF.\n" +
-      "  Default output is <input basename>.pdf next to the source file."
+      "  Default output is <input basename>.pdf next to the source file.\n" +
+      "\n" +
+      "  -s, --style <name>  built-in style from styles/<name>.css (default: resume)\n" +
+      "      --css <file>    use an arbitrary CSS file instead of a built-in style\n" +
+      "  -o, --output <file> output PDF path"
   );
 }
 
@@ -107,7 +144,7 @@ async function main() {
   });
   const bodyHtml = md.render(markdown);
 
-  const cssPath = path.join(__dirname, "print.css");
+  const cssPath = resolveCssPath(args);
   const css = fs.readFileSync(cssPath, "utf8");
 
   // Full HTML doc. The CSS is inlined so the temp file is self-contained;
